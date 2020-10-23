@@ -14,7 +14,7 @@ class Strooper extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
-      home: Home(),
+      home: HomeView(),
     );
   }
 }

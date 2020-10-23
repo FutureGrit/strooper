@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 
-class Home extends StatefulWidget {
+class HomeView extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

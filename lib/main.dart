@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:strooper/ui/views/home_view.dart';
 
 void main() {
   runApp(Strooper());
@@ -7,18 +10,11 @@ void main() {
 class Strooper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Hide status bar and enable full screen
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          color: Colors.blueGrey,
-          child: Center(
-            child: Text(
-              'Strooper',
-              style: TextStyle(fontSize: 30, color: Colors.orange),
-            ),
-          ),
-        ),
-      ),
+      home: Home(),
     );
   }
 }

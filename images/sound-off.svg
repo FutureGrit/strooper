@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 48">
+  <defs/>
+  <defs>
+    <radialGradient id="futuregrit_144" cx="-447.93" cy="44.61" r="39.86" gradientTransform="matrix(.54 0 0 1 272.16 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d0cdea"/>
+      <stop offset="1" stop-color="#7d75da"/>
+    </radialGradient>
+    <radialGradient id="futuregrit_168" cx="1140.64" cy="-580.17" r="1.33" gradientTransform="matrix(-.06 -1 1.02 -.06 675.39 1117.2)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00b359"/>
+      <stop offset=".13" stop-color="#009148"/>
+      <stop offset=".34" stop-color="#005e2f"/>
+      <stop offset=".54" stop-color="#00351a"/>
+      <stop offset=".73" stop-color="#00180c"/>
+      <stop offset=".89" stop-color="#000603"/>
+      <stop offset="1"/>
+    </radialGradient>
+    <radialGradient id="futuregrit_168-2" cx="1146.25" cy="-578.02" r="1.33" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-3" cx="1129.91" cy="-580.06" r="1.33" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-4" cx="1147.22" cy="-585.18" r="3.73" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-5" cx="1120.08" cy="-576.24" r="1.78" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-6" cx="1113.53" cy="-592.27" r=".89" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-7" cx="1131" cy="-566.41" r=".89" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-8" cx="1117.99" cy="-579.59" r=".66" xlink:href="#futuregrit_168"/>
+    <radialGradient id="futuregrit_168-9" cx="1117.2" cy="-569.25" r="1.39" xlink:href="#futuregrit_168"/>
+    <linearGradient id="futuregrit_129" x1="28" y1="45.58" x2="28" y2=".42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cadcff"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="futuregrit_396" x1="28" y1="44.78" x2="28" y2=".87" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fafafd"/>
+      <stop offset="1" stop-color="#c3bfee"/>
+    </linearGradient>
+    <linearGradient id="futuregrit_155" x1="830.52" y1="38.53" x2="878.93" y2="38.53" gradientTransform="matrix(-1 0 0 1 883.07 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6140"/>
+      <stop offset=".1" stop-color="#ef5b3c"/>
+      <stop offset=".29" stop-color="#c54b31"/>
+      <stop offset=".55" stop-color="#813120"/>
+      <stop offset=".88" stop-color="#240e09"/>
+      <stop offset="1"/>
+    </linearGradient>
+    <linearGradient id="futuregrit_172" x1="3.07" y1="9.77" x2="54.18" y2="9.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9840"/>
+      <stop offset=".1" stop-color="#ef8e3c"/>
+      <stop offset=".29" stop-color="#c57531"/>
+      <stop offset=".55" stop-color="#814d20"/>
+      <stop offset=".88" stop-color="#241609"/>
+      <stop offset="1"/>
+    </linearGradient>
+  </defs>
+  <g style="isolation:isolate">
+    <g id="Layer_2">
+      <g id="Home">
+        <g id="App_Bar">
+          <g id="Sound_Off">
+            <path d="M1 41.05c2 7.42 49.19 9.95 53.18 2.26C57.8 36.3 55.41 9 52.31 4 48.08-2.8 6.7 0 3.28 5.37.09 10.38-1 33.35 1 41.05z" fill="url(#futuregrit_144)"/>
+            <path d="M1.17 39.74c1.93 7.16 48.89 8.14 52.86.7 3.61-6.77 1.27-31.29-1.82-36.11C48-2.25 6.78.38 3.37 5.55c-3.18 4.83-4.2 26.77-2.2 34.19z" fill="url(#futuregrit_129)"/>
+            <path d="M1.75 39.1c1.89 6.95 47.84 7.92 51.73.7C57 33.23 54.7 9.37 51.68 4.69 47.56-1.69 7.23.8 3.9 5.82.79 10.51-.21 31.9 1.75 39.1z" fill="url(#futuregrit_396)"/>
+            <path d="M52.55 39.93s-21.63 6.43-48.4.34c0 0 17.11-.9 24.85-3.68 13.14-4.71 20.1-1.96 23.55 3.34z" style="mix-blend-mode:screen" fill="url(#futuregrit_155)"/>
+            <path d="M16.37 11.86a1.35 1.35 0 011.44 1.25 1.36 1.36 0 11-1.44-1.25z" style="mix-blend-mode:screen" fill="url(#futuregrit_168)"/>
+            <path style="fill:#ffffab;" d="M16.54 12.82a.37.37 0 110 .73.38.38 0 01-.4-.34.37.37 0 01.4-.39z"/>
+            <path d="M18.22 6.13a1.36 1.36 0 011.44 1.25 1.36 1.36 0 11-1.44-1.25z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-2)"/>
+            <path style="fill:#ffffab;" d="M18.38 7.09a.37.37 0 01.4.34.38.38 0 11-.75.05.37.37 0 01.35-.39z"/>
+            <path d="M17.13 22.57A1.33 1.33 0 1115.86 24a1.33 1.33 0 011.27-1.43z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-3)"/>
+            <path style="fill:#ffffab;" d="M17.3 23.52a.38.38 0 01.39.35.36.36 0 01-.35.39.37.37 0 01-.4-.35.38.38 0 01.36-.39z"/>
+            <path d="M10.74 3.2a3.79 3.79 0 014 3.5 3.8 3.8 0 11-4-3.5z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-4)"/>
+            <path style="fill:#ffffab;" d="M11.19 5.88a1.05 1.05 0 011.12 1 1.05 1.05 0 01-2.1.12 1 1 0 01.98-1.12z"/>
+            <path d="M21.58 31.7a1.78 1.78 0 11-1.7 1.89 1.8 1.8 0 011.7-1.89z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-5)"/>
+            <path style="fill:#ffffab;" d="M21.8 33a.5.5 0 11.06 1 .5.5 0 01-.53-.47.49.49 0 01.47-.53z"/>
+            <path d="M5.74 40.09a.89.89 0 11.11 1.78.91.91 0 01-1-.84.89.89 0 01.89-.94z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-6)"/>
+            <path style="fill:#ffffab;" d="M5.85 40.73a.25.25 0 01.27.23.25.25 0 01-.5 0 .24.24 0 01.23-.23z"/>
+            <path d="M31 21.1a.91.91 0 011 .84.91.91 0 11-1-.84z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-7)"/>
+            <path style="fill:#ffffab;" d="M31.08 21.74a.26.26 0 01.27.24.25.25 0 01-.24.26.25.25 0 01-.26-.24.25.25 0 01.23-.26z"/>
+            <path d="M18.38 35.1a.67.67 0 01.71.62.68.68 0 01-1.35.08.66.66 0 01.64-.7z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-8)"/>
+            <path style="fill:#ffffab;" d="M18.46 35.57a.2.2 0 01.2.18.19.19 0 01-.38 0 .2.2 0 01.18-.18z"/>
+            <path d="M28.89 34.55A1.39 1.39 0 1127.56 36a1.4 1.4 0 011.33-1.45z" style="mix-blend-mode:screen" fill="url(#futuregrit_168-9)"/>
+            <path style="fill:#ffffab;" d="M29.06 35.55a.39.39 0 01.42.36.38.38 0 01-.37.41.39.39 0 01-.41-.32.38.38 0 01.36-.45z"/>
+            <path style="fill:#fff;" d="M51.3 41.26c-.24-.79 1.9-4.42 2.45-4.4s.06 2.38-.27 2.94-2.06 1.86-2.18 1.46zM3.78 9.92s-1.51-3.79 1.4-5.14 12.43-2.64 12.9-2.3-4 1.94-6.35 2.77S5 10.57 3.78 9.92z"/>
+            <path style="fill:#ab9ff2;" d="M28 25.57c-2.66-2.46-9.17 1.4-9.64 5.51s8.23 4.34 10.16 2a5.86 5.86 0 00-.52-7.51z"/>
+            <path style="fill:#ab9ff2;" d="M28.83 30.34s.91-13.74 1.67-17.85a2.36 2.36 0 012.79 1s-1.95 14.73-4.61 18.89z"/>
+            <path style="fill:#ab9ff2;" d="M30.5 12.49a11 11 0 019.35 3.2l.07 1s-5.81-1.08-9.93-.37z"/>
+            <ellipse style="fill:none;stroke:#ab9ff2;stroke-linecap:round;stroke-miterlimit:10;" cx="29.13" cy="23.47" rx="15.04" ry="14.77"/>
+            <path style="fill:none;stroke:#ab9ff2;stroke-linecap:round;stroke-miterlimit:10;" d="M20.09 11.67l17.52 24z"/>
+            <path d="M3.78 5.85s31.52-9.87 48-1c0 0 1.73 1.36 2.39 6.63 0 0-1.32-4.64-11.19-4C34.49 8 21.33 22 7.57 17.51.65 15.25 3.78 5.85 3.78 5.85z" style="mix-blend-mode:screen" fill="url(#futuregrit_172)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

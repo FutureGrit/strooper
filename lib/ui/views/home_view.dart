@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/ui/widgets/app_bar_widget.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -8,16 +9,21 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // TODO: Pre load all required image assets
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: appBackgroundDecoration,
-        child: Center(
-          child: Text(
-            'Strooper',
-            style: TextStyle(fontSize: 30, color: Colors.orange),
-          ),
+        child: Column(
+          children: [
+            AppBarWidget(),
+            // TODO: Add app name image "STROOPER"
+            // TODO: Add "START" button
+            // TODO: Add "Clouds"
+          ],
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:strooper/ui/widgets/sound_button_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
@@ -25,14 +26,11 @@ class AppBarWidget extends StatelessWidget {
                       fontFamily: 'FredokaOne',
                       color: Colors.white,
                       fontSize: 28),
-                )
+                ),
               ],
             ),
             Spacer(),
-            // TODO: change image on tap
-            SvgPicture.asset(
-              'images/sound-on.svg',
-            ),
+            SoundButtonWidget(),
             SizedBox(
               width: 18,
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:strooper/ui/widgets/sound_button_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -21,21 +22,30 @@ class AppBarWidget extends StatelessWidget {
                       fontSize: 14),
                 ),
                 Text(
+                  // TODO: Get high score from local DB
                   '128',
+                  // TODO: Move text style
                   style: TextStyle(
                       fontFamily: 'FredokaOne',
                       color: Colors.white,
-                      fontSize: 28),
+                      fontSize: 30),
                 ),
               ],
             ),
             Spacer(),
             SoundButtonWidget(),
-            SizedBox(
-              width: 18,
-            ),
+            SizedBox(width: 20),
             // TODO: on tap open an information dialog
-            SvgPicture.asset('images/info.svg'),
+            GestureDetector(
+              onTap: () {
+                // TODO: open a dialog box with "how to play" instruction
+                print('Instruction button tapped');
+              },
+              child: SvgPicture.asset(
+                'images/info.svg',
+                width: MediaQuery.of(context).size.width / 6.5,
+              ),
+            ),
           ],
         ),
       ),

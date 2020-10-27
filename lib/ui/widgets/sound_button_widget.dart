@@ -13,8 +13,10 @@ class SoundButtonWidget extends StatelessWidget {
         // TODO: Update sound icon
         print('Sound-on button taped.');
       },
+      // TODO: Use AnimatedSwitcher to switch between sound-on and off icons.
       child: SvgPicture.asset(
         soundEnabled ? 'images/sound-on.svg' : 'images/sound-off.svg',
+        width: MediaQuery.of(context).size.width / 6.5,
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:strooper/ui/views/home_view.dart';
+import 'file:///D:/Flutter/Projects/strooper/lib/home/home_view.dart';
 
 void main() {
   runApp(Strooper());

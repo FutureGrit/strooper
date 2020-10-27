@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:strooper/ui/widgets/sound_button_widget.dart';
+import 'package:strooper/home/widgets/sound_button_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override

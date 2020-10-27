@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/ui/widgets/app_bar_widget.dart';
-import 'package:strooper/ui/widgets/cloud_widget.dart';
+import 'package:strooper/home/widgets/app_bar_widget.dart';
+import 'package:strooper/home/widgets/cloud_widget.dart';
 
 class HomeView extends StatefulWidget {
   @override

@@ -15,7 +15,7 @@ class BounceAnimation extends StatefulWidget {
 class _BounceAnimationState extends State<BounceAnimation>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
-  Animation<double> animation;
+  Animation<double> _animation;
   double _scale;
 
   bool isPressed = false;
@@ -40,8 +40,12 @@ class _BounceAnimationState extends State<BounceAnimation>
         }
       });
 
-    animation = CurvedAnimation(
-        parent: _animationController, curve: Curves.elasticInOut);
+    // Use end: -2 to flip the image
+    _animation = Tween<double>(begin: 1, end: .8).animate(CurvedAnimation(
+        parent: _animationController, curve: Curves.elasticOut));
+
+    // _animation = CurvedAnimation(
+    //     parent: _animationController, curve: Curves.bounceInOut);
     // _animationController.forward();
     super.initState();
   }
@@ -62,8 +66,10 @@ class _BounceAnimationState extends State<BounceAnimation>
       },
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
-      child: Transform.scale(
-        scale: _scale,
+      child: ScaleTransition(
+        scale: _animation,
+        alignment: Alignment.center,
+        //scale: _scale,
         //Curves.elasticInOut.,
         //ElasticInOutCurve().transform(_scale), //animation,//Curves.elasticInOut,//_scale,
         child: widget.bounceWidget,

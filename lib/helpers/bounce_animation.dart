@@ -10,43 +10,39 @@ class BounceAnimation extends StatefulWidget {
   _BounceAnimationState createState() => _BounceAnimationState();
 }
 
-// TODO: Improve animation performance by eliminating multiple calls from on tap event
-// TODO: Enhancement = Improve bounce effect eg. add grow and shrink effect on tap up
 class _BounceAnimationState extends State<BounceAnimation>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
-  Animation<double> _animation;
   double _scale;
 
-  bool isPressed = false;
+  bool isTapped = false;
 
   @override
   void initState() {
     _animationController = AnimationController(
       duration: Duration(milliseconds: 180),
       lowerBound: 0.0,
-      upperBound: 0.1,
+      upperBound: 0.2,
       vsync: this,
     )
       ..addListener(() {
-        // TODO: Set state or execute function based on animation status
         setState(() {});
       })
       ..addStatusListener((status) {
-        if (status == AnimationStatus.completed && !isPressed) {
+        print('Listening to status isLongPressed = $isTapped status = $status');
+
+        /// Reverse animation only if button is tapped not on long press as
+        /// we are already doing reverse animation on long press end
+        if (status == AnimationStatus.completed && isTapped) {
           print('Inside Animation Status completed');
           _animationController.reverse();
+        }
+        if (status == AnimationStatus.dismissed) {
+          isTapped = false;
           widget.onTap();
         }
       });
 
-    // Use end: -2 to flip the image
-    _animation = Tween<double>(begin: 1, end: .8).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.elasticOut));
-
-    // _animation = CurvedAnimation(
-    //     parent: _animationController, curve: Curves.bounceInOut);
-    // _animationController.forward();
     super.initState();
   }
 
@@ -60,32 +56,30 @@ class _BounceAnimationState extends State<BounceAnimation>
   Widget build(BuildContext context) {
     _scale = 1 - _animationController.value;
     return GestureDetector(
-      onTap: () {
-        print('ON TAP Calledx');
-        _animationController.forward();
-      },
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      child: ScaleTransition(
-        scale: _animation,
+      onTap: !isTapped ? _onTap : null,
+      onLongPressStart: _onLongPressStart,
+      onLongPressEnd: _onLongPressEnd,
+      child: Transform.scale(
+        scale: _scale,
         alignment: Alignment.center,
-        //scale: _scale,
-        //Curves.elasticInOut.,
-        //ElasticInOutCurve().transform(_scale), //animation,//Curves.elasticInOut,//_scale,
         child: widget.bounceWidget,
       ),
     );
   }
 
-  void _onTapDown(TapDownDetails details) {
-    print('Tap Down calledxY');
-    isPressed = true;
+  void _onTap() {
+    print('******* ON TAP Called *******');
+    isTapped = true;
     _animationController.forward();
   }
 
-  void _onTapUp(TapUpDetails details) {
-    print('Tap Up calledxY');
-    isPressed = false;
+  void _onLongPressStart(LongPressStartDetails details) {
+    print('-------- Long Press Start ---------');
+    _animationController.forward();
+  }
+
+  void _onLongPressEnd(LongPressEndDetails details) {
+    print('======= On Long Press Ends =======');
     _animationController.reverse();
   }
 }

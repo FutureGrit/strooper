@@ -29,12 +29,9 @@ class _BounceAnimationState extends State<BounceAnimation>
         setState(() {});
       })
       ..addStatusListener((status) {
-        print('Listening to status isLongPressed = $isTapped status = $status');
-
         /// Reverse animation only if button is tapped not on long press as
         /// we are already doing reverse animation on long press end
         if (status == AnimationStatus.completed && isTapped) {
-          print('Inside Animation Status completed');
           _animationController.reverse();
         }
         if (status == AnimationStatus.dismissed) {
@@ -68,18 +65,15 @@ class _BounceAnimationState extends State<BounceAnimation>
   }
 
   void _onTap() {
-    print('******* ON TAP Called *******');
     isTapped = true;
     _animationController.forward();
   }
 
   void _onLongPressStart(LongPressStartDetails details) {
-    print('-------- Long Press Start ---------');
     _animationController.forward();
   }
 
   void _onLongPressEnd(LongPressEndDetails details) {
-    print('======= On Long Press Ends =======');
     _animationController.reverse();
   }
 }

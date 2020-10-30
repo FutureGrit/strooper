@@ -16,19 +16,13 @@ class AppBarWidget extends StatelessWidget {
               children: [
                 Text(
                   'High Score',
-                  style: TextStyle(
-                      fontFamily: 'FredokaOne',
-                      color: Colors.white,
-                      fontSize: 14),
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
                 Text(
                   // TODO: Get high score from local DB
                   '128',
                   // TODO: Move text style
-                  style: TextStyle(
-                      fontFamily: 'FredokaOne',
-                      color: Colors.white,
-                      fontSize: 30),
+                  style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
               ],
             ),

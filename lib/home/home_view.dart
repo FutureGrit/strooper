@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/helpers/bounce_button.dart';
 import 'package:strooper/home/widgets/app_bar_widget.dart';
 import 'package:strooper/home/widgets/cloud_widget.dart';
 
@@ -42,10 +41,24 @@ class _HomeViewState extends State<HomeView> {
               onTap: () {
                 print('Navigating to PLAY Screen.');
               },
+              // TODO: add duration parameter
             ),
 
-            // Clouds
-            CloudWidget(),
+            // Clouds and "@FutureGrit" label
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                CloudWidget(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '@FutureGrit',
+                    style: TextStyle(color: Colors.black, fontSize: 12),
+                  ),
+                )
+              ],
+            ),
+            //CloudWidget(),
             // TODO: Add app name image "STROOPER"
             // TODO: Add "START" button
             // TODO: Add "Clouds"

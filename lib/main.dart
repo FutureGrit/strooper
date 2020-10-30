@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'file:///D:/Flutter/Projects/strooper/lib/home/home_view.dart';
+import 'home/home_view.dart';
 
 void main() {
   runApp(Strooper());
@@ -14,6 +15,7 @@ class Strooper extends StatelessWidget {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'FredokaOne'),
       home: HomeView(),
     );
   }

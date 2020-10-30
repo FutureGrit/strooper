@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/home/widgets/app_bar_widget.dart';
 import 'package:strooper/home/widgets/cloud_widget.dart';
@@ -50,18 +51,14 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 CloudWidget(),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(paddingSmall),
                   child: Text(
                     '@FutureGrit',
-                    style: TextStyle(color: Colors.black, fontSize: 12),
+                    style: watermarkStyle,
                   ),
                 )
               ],
             ),
-            //CloudWidget(),
-            // TODO: Add app name image "STROOPER"
-            // TODO: Add "START" button
-            // TODO: Add "Clouds"
           ],
         ),
       ),

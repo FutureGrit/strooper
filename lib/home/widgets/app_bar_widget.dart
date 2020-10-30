@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/home/widgets/sound_button_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -8,7 +10,8 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+        padding: EdgeInsets.symmetric(
+            vertical: paddingLarge, horizontal: paddingNormal),
         child: Row(
           children: [
             Column(
@@ -16,19 +19,18 @@ class AppBarWidget extends StatelessWidget {
               children: [
                 Text(
                   'High Score',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  style: highScoreTextStyle,
                 ),
                 Text(
                   // TODO: Get high score from local DB
                   '128',
-                  // TODO: Move text style
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: highScoreTextStyle.copyWith(fontSize: 30),
                 ),
               ],
             ),
             Spacer(),
             SoundButtonWidget(),
-            SizedBox(width: 20),
+            verticalSpacingMedium,
             // TODO: on tap open an information dialog
             GestureDetector(
               onTap: () {

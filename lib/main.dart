@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:strooper/home/home_view_model.dart';
 
 import 'home/home_view.dart';
 
@@ -15,7 +17,10 @@ class Strooper extends StatelessWidget {
 
     return MaterialApp(
       theme: ThemeData(fontFamily: 'FredokaOne'),
-      home: HomeView(),
+      home: ChangeNotifierProvider(
+        create: (context) => HomeViewModel(),
+        child: HomeView(),
+      ),
     );
   }
 }

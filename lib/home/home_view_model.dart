@@ -18,6 +18,8 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   // TODO: Create method for navigating to Instruction screen on "i" button tapped
+  void showInstruction() {}
 
   // TODO: Create method for navigating to PLAY screen on "Start" button tapped
+  void startGame() {}
 }

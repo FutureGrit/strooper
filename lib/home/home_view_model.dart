@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:strooper/locator.dart';
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/constants/route_paths.dart' as routes;
+import 'package:strooper/services/sound_service.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();
+  final SoundService _player = locator<SoundService>();
 
   // TODO: Create method to provide high score from local DB service
 
@@ -20,6 +22,7 @@ class HomeViewModel extends ChangeNotifier {
     // TODO: Update sound status in local DB
     _soundEnabled = !_soundEnabled;
     log('Updated sound status: $_soundEnabled');
+    _player.backgroundMusic();
     notifyListeners();
   }
 

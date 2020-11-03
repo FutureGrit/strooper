@@ -18,6 +18,8 @@ dependencies:
   provider: ^4.3.2+2
   get_it: ^5.0.1
 
+  audioplayers: ^0.16.2
+
 
 dev_dependencies:
   flutter_test:

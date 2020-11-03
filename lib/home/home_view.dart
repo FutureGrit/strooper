@@ -41,7 +41,8 @@ class HomeView extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2.2,
                     ),
                     onTap: () {
-                      print('Navigating to PLAY Screen.');
+                      Provider.of<HomeViewModel>(context, listen: false)
+                          .startGame();
                     },
                     // TODO: add duration parameter
                   ),

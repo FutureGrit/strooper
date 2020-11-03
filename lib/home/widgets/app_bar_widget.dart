@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/ui_utils.dart';
+import 'package:strooper/home/home_view_model.dart';
 import 'package:strooper/home/widgets/sound_button_widget.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -35,7 +37,8 @@ class AppBarWidget extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 // TODO: open a dialog box with "how to play" instruction
-                print('Instruction button tapped');
+                Provider.of<HomeViewModel>(context, listen: false)
+                    .showInstruction();
               },
               child: SvgPicture.asset(
                 'images/info.svg',

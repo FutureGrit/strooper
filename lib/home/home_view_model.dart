@@ -2,7 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'package:strooper/locator.dart';
+import 'package:strooper/services/navigation_service.dart';
+import 'package:strooper/constants/route_paths.dart' as routes;
+
 class HomeViewModel extends ChangeNotifier {
+  final NavigationService _navigationService = locator<NavigationService>();
+
   // TODO: Create method to provide high score from local DB service
 
   // Done: Create method to play and stop music
@@ -18,8 +24,12 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   // TODO: Create method for navigating to Instruction screen on "i" button tapped
-  void showInstruction() {}
+  void showInstruction() {
+    print('Instruction button tapped: HomeViewModel');
+  }
 
   // TODO: Create method for navigating to PLAY screen on "Start" button tapped
-  void startGame() {}
+  void startGame() {
+    _navigationService.navigateTo(routes.PlayRoute);
+  }
 }

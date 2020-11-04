@@ -6,6 +6,7 @@ import 'package:strooper/locator.dart';
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/constants/route_paths.dart' as routes;
 import 'package:strooper/services/sound_service.dart';
+import 'package:strooper/enums/strooper_actions.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();
@@ -22,19 +23,23 @@ class HomeViewModel extends ChangeNotifier {
     // TODO: Update sound status in local DB
     _soundEnabled = !_soundEnabled;
     log('Updated sound status: $_soundEnabled');
-    _soundEnabled ? _player.backgroundMusic() : _player.stopBackgroundPlayer();
+    _soundEnabled
+        ? _player.playBackgroundMusic(STROOPER_ACTIONS.SOUND_ON)
+        : _player.stopBackgroundMusic();
     notifyListeners();
   }
 
   // TODO: Create method for navigating to Instruction screen on "i" button tapped
   void showInstruction() {
-    print('Instruction button tapped: HomeViewModel XX');
-    if (_soundEnabled) _player.menuButtonSound();
+    print(
+        'Instruction button tapped: HomeViewModel: Improved Sound Structue ********');
+    if (_soundEnabled)
+      _player.playButtonSound(STROOPER_ACTIONS.INSTRUCTION_SHOW);
   }
 
   // TODO: Create method for navigating to PLAY screen on "Start" button tapped
   void startGame() {
-    if (_soundEnabled) _player.startButtonSound();
+    if (_soundEnabled) _player.playButtonSound(STROOPER_ACTIONS.START_GAME);
     _navigationService.navigateTo(routes.PlayRoute);
   }
 }

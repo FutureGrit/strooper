@@ -1,46 +1,40 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-// TODO: create media control like: soundOnControl, SoundOffControl,
+import 'package:strooper/enums/strooper_actions.dart';
+
 class SoundService {
-  AudioPlayer _controllerPlayer;
+  SoundService() {
+    _backgroundAudioController = AudioPlayer();
+    _backgroundAudioCache = AudioCache(fixedPlayer: _backgroundAudioController);
+
+    _buttonAudioCache = AudioCache();
+  }
+
+  AudioPlayer _backgroundAudioController = AudioPlayer();
   AudioCache _backgroundAudioCache;
 
-  AudioPlayer _buttonAudioController;
   AudioCache _buttonAudioCache;
 
-  SoundService() {
-    _controllerPlayer = AudioPlayer();
-    _backgroundAudioCache = AudioCache(fixedPlayer: _controllerPlayer);
+  Map<STROOPER_ACTIONS, String> actionMapping = {
+    STROOPER_ACTIONS.SOUND_ON: "background_sound.mp3",
+    STROOPER_ACTIONS.START_GAME: "start_button_sound.wav",
+    STROOPER_ACTIONS.INSTRUCTION_SHOW: "menu_button_sound.wav",
+    STROOPER_ACTIONS.ANSWER_BUTTON: "answer_button_sound.wav",
+  };
 
-    _buttonAudioController = AudioPlayer();
-    _buttonAudioCache = AudioCache(fixedPlayer: _buttonAudioController);
+  // TODO: Load sounds before using them.
+
+  void playBackgroundMusic(STROOPER_ACTIONS action) async {
+    await _backgroundAudioCache.loop(actionMapping[action], volume: .5);
   }
 
-  void backgroundMusic() async {
-    await _backgroundAudioCache.loop('background_sound.mp3');
+  void stopBackgroundMusic() {
+    _backgroundAudioController.stop();
+    _backgroundAudioController.release();
   }
 
-  void startButtonSound() async {
-    _stopButtonPlayer();
-    await _buttonAudioCache.play('start_button_sound.wav');
-  }
-
-  void answerButtonSound() {
-    _stopButtonPlayer();
-    _buttonAudioCache.play('answer_button_sound.wav');
-  }
-
-  void menuButtonSound() {
-    _stopButtonPlayer();
-    _buttonAudioCache.play('menu_button_sound.wav');
-  }
-
-  void _stopButtonPlayer() {
-    _buttonAudioController.stop();
-  }
-
-  void stopBackgroundPlayer() {
-    _controllerPlayer.stop();
+  void playButtonSound(STROOPER_ACTIONS action) async {
+    await _buttonAudioCache.play(actionMapping[action]);
   }
 }

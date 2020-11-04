@@ -14,7 +14,7 @@ class HomeViewModel extends ChangeNotifier {
   // TODO: Create method to provide high score from local DB service
 
   // Done: Create method to play and stop music
-  bool _soundEnabled = true;
+  bool _soundEnabled = false;
 
   bool get soundStatus => _soundEnabled;
 
@@ -22,17 +22,19 @@ class HomeViewModel extends ChangeNotifier {
     // TODO: Update sound status in local DB
     _soundEnabled = !_soundEnabled;
     log('Updated sound status: $_soundEnabled');
-    _player.backgroundMusic();
+    _soundEnabled ? _player.backgroundMusic() : _player.stopBackgroundPlayer();
     notifyListeners();
   }
 
   // TODO: Create method for navigating to Instruction screen on "i" button tapped
   void showInstruction() {
-    print('Instruction button tapped: HomeViewModel');
+    print('Instruction button tapped: HomeViewModel XX');
+    if (_soundEnabled) _player.menuButtonSound();
   }
 
   // TODO: Create method for navigating to PLAY screen on "Start" button tapped
   void startGame() {
+    if (_soundEnabled) _player.startButtonSound();
     _navigationService.navigateTo(routes.PlayRoute);
   }
 }

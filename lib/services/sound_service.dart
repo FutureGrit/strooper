@@ -1,24 +1,46 @@
 import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // TODO: create media control like: soundOnControl, SoundOffControl,
 class SoundService {
-  final player = AudioCache();
+  AudioPlayer _controllerPlayer;
+  AudioCache _backgroundAudioCache;
 
-  void backgroundMusic() async {
-    // TODO: Set continuous loop for background music
-    // TODO: checkout low latency option for background music
-    await player.play('background_sound.mp3');
+  AudioPlayer _buttonAudioController;
+  AudioCache _buttonAudioCache;
+
+  SoundService() {
+    _controllerPlayer = AudioPlayer();
+    _backgroundAudioCache = AudioCache(fixedPlayer: _controllerPlayer);
+
+    _buttonAudioController = AudioPlayer();
+    _buttonAudioCache = AudioCache(fixedPlayer: _buttonAudioController);
   }
 
-  void startButtonSound() {
-    // TODO: Play sound
+  void backgroundMusic() async {
+    await _backgroundAudioCache.loop('background_sound.mp3');
+  }
+
+  void startButtonSound() async {
+    _stopButtonPlayer();
+    await _buttonAudioCache.play('start_button_sound.wav');
   }
 
   void answerButtonSound() {
-    // TODO: Play sound
+    _stopButtonPlayer();
+    _buttonAudioCache.play('answer_button_sound.wav');
   }
 
   void menuButtonSound() {
-    // TODO: Play sound
+    _stopButtonPlayer();
+    _buttonAudioCache.play('menu_button_sound.wav');
+  }
+
+  void _stopButtonPlayer() {
+    _buttonAudioController.stop();
+  }
+
+  void stopBackgroundPlayer() {
+    _controllerPlayer.stop();
   }
 }

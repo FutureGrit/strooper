@@ -24,7 +24,7 @@ class HomeViewModel extends ChangeNotifier {
     _soundEnabled = !_soundEnabled;
     log('Updated sound status: $_soundEnabled');
     _soundEnabled
-        ? _player.playBackgroundMusic(STROOPER_ACTIONS.SOUND_ON)
+        ? _player.playBackgroundMusic()
         : _player.stopBackgroundMusic();
     notifyListeners();
   }

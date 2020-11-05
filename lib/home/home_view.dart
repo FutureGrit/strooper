@@ -9,7 +9,52 @@ import 'package:strooper/home/home_view_model.dart';
 import 'package:strooper/home/widgets/app_bar_widget.dart';
 import 'package:strooper/home/widgets/cloud_widget.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
+  /// To access 'BuildContext' that does include the provider so it can be used
+  /// in accessing view model in life cycle states.
+  BuildContext modelBuildContext;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    HomeViewModel homeViewModel =
+        Provider.of<HomeViewModel>(modelBuildContext, listen: false);
+
+    if (state == AppLifecycleState.paused) {
+      // went to Background
+      homeViewModel.pauseBackgroundMusic();
+    }
+
+    if (state == AppLifecycleState.resumed) {
+      // came back to Foreground
+      homeViewModel.resumeBackgroundMusic();
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      // inactive because split-screen app, a phone call etc...
+      homeViewModel.pauseBackgroundMusic();
+    }
+  }
+
+  // TODO: exit on back button pressed twice
   @override
   Widget build(BuildContext context) {
     // TODO: Pre load all required image assets
@@ -18,6 +63,7 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         body: Consumer<HomeViewModel>(
           builder: (context, data, child) {
+            modelBuildContext = context;
             return Container(
               width: double.infinity,
               height: double.infinity,

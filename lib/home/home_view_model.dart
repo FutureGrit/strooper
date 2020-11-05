@@ -14,8 +14,8 @@ class HomeViewModel extends ChangeNotifier {
 
   // TODO: Create method to provide high score from local DB service
 
-  // Done: Create method to play and stop music
   bool _soundEnabled = false;
+  bool _soundPaused = false;
 
   bool get soundStatus => _soundEnabled;
 
@@ -29,17 +29,34 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Pause game background music if sound is enabled(playing). Music will
+  /// resume from the point that it has been paused.
+  void pauseBackgroundMusic() {
+    if (_soundEnabled) {
+      _player.pauseBackgroundMusic();
+      _soundPaused = true;
+    }
+  }
+
+  /// Resume game background music if it's paused and app is no longer in
+  /// background and inactive.
+  void resumeBackgroundMusic() {
+    if (_soundPaused) {
+      _player.resumeBackgroundMusic();
+      _soundPaused = false;
+    }
+  }
+
   // TODO: Create method for navigating to Instruction screen on "i" button tapped
   void showInstruction() {
-    print(
-        'Instruction button tapped: HomeViewModel: Improved Sound Structue ********');
+    log('Instruction button tapped: HomeViewModel');
     if (_soundEnabled)
-      _player.playButtonSound(STROOPER_ACTIONS.INSTRUCTION_SHOW);
+      _player.playButtonSound(StrooperActions.INSTRUCTION_SHOW);
   }
 
   // TODO: Create method for navigating to PLAY screen on "Start" button tapped
   void startGame() {
-    if (_soundEnabled) _player.playButtonSound(STROOPER_ACTIONS.START_GAME);
+    if (_soundEnabled) _player.playButtonSound(StrooperActions.START_GAME);
     _navigationService.navigateTo(routes.PlayRoute);
   }
 }

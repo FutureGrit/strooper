@@ -1,4 +1,4 @@
-enum STROOPER_ACTIONS {
+enum StrooperActions {
   SOUND_ON,
   SOUND_OFF,
   INSTRUCTION_SHOW,

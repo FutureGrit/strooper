@@ -10,6 +10,8 @@ class SoundService {
 
     _buttonAudioController = AudioPlayer();
     _buttonAudioCache = AudioCache(fixedPlayer: _buttonAudioController);
+
+    // TODO: Pre load all button actions sounds
   }
 
   AudioPlayer _backgroundAudioController;
@@ -18,10 +20,10 @@ class SoundService {
   AudioPlayer _buttonAudioController;
   AudioCache _buttonAudioCache;
 
-  Map<STROOPER_ACTIONS, String> buttonActionMapping = {
-    STROOPER_ACTIONS.START_GAME: "start_button_sound.wav",
-    STROOPER_ACTIONS.INSTRUCTION_SHOW: "menu_button_sound.wav",
-    STROOPER_ACTIONS.ANSWER_BUTTON: "answer_button_sound.wav",
+  Map<StrooperActions, String> buttonActionMapping = {
+    StrooperActions.START_GAME: "start_button_sound.wav",
+    StrooperActions.INSTRUCTION_SHOW: "menu_button_sound.wav",
+    StrooperActions.ANSWER_BUTTON: "answer_button_sound.wav",
   };
 
   void playBackgroundMusic() async {
@@ -34,7 +36,15 @@ class SoundService {
       ..release();
   }
 
-  void playButtonSound(STROOPER_ACTIONS action) async {
+  void pauseBackgroundMusic() async {
+    await _backgroundAudioController.pause();
+  }
+
+  void resumeBackgroundMusic() async {
+    await _backgroundAudioController.resume();
+  }
+
+  void playButtonSound(StrooperActions action) async {
     _buttonAudioController?.stop();
     await _buttonAudioCache.play(buttonActionMapping[action], duckAudio: true);
   }

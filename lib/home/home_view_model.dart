@@ -22,10 +22,10 @@ class HomeViewModel extends ChangeNotifier {
   void updateSoundStatus() {
     // TODO: Update sound status in local DB
     _soundEnabled = !_soundEnabled;
-    log('Updated sound status: $_soundEnabled');
     _soundEnabled
         ? _player.playBackgroundMusic()
-        : _player.stopBackgroundMusic();
+        : _player
+            .stopAllSounds(); // this will stop background music and button sounds
     notifyListeners();
   }
 
@@ -54,7 +54,6 @@ class HomeViewModel extends ChangeNotifier {
       _player.playButtonSound(StrooperActions.INSTRUCTION_SHOW);
   }
 
-  // TODO: Create method for navigating to PLAY screen on "Start" button tapped
   void startGame() {
     if (_soundEnabled) _player.playButtonSound(StrooperActions.START_GAME);
     _navigationService.navigateTo(routes.PlayRoute);

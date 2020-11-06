@@ -11,7 +11,12 @@ class SoundService {
     _buttonAudioController = AudioPlayer();
     _buttonAudioCache = AudioCache(fixedPlayer: _buttonAudioController);
 
-    // TODO: Pre load all button actions sounds
+    // Pre-loading audio so that they will always play smoothly.
+    _backgroundAudioCache.load('background_sound.mp3');
+    List<String> audioList = [];
+    buttonActionMapping.entries
+        .forEach((element) => audioList.add(element.value));
+    _buttonAudioCache.loadAll(audioList);
   }
 
   AudioPlayer _backgroundAudioController;
@@ -30,10 +35,14 @@ class SoundService {
     await _backgroundAudioCache.loop("background_sound.mp3", volume: .5);
   }
 
-  void stopBackgroundMusic() {
+  void stopAllSounds() {
     _backgroundAudioController
       ..stop()
       ..release();
+
+    // Button audio controller only need to release because it has shorter audio
+    // which will automatically stop.
+    _buttonAudioController?.release();
   }
 
   void pauseBackgroundMusic() async {
@@ -49,6 +58,3 @@ class SoundService {
     await _buttonAudioCache.play(buttonActionMapping[action], duckAudio: true);
   }
 }
-// TODO: Clear cache when app is closed
-// TODO: on device sleep state or app is not active then pause background sound
-// TODO: on device active resume background sound

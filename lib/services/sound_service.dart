@@ -54,7 +54,6 @@ class SoundService {
   }
 
   void playButtonSound(StrooperActions action) async {
-    _buttonAudioController?.stop();
     await _buttonAudioCache.play(buttonActionMapping[action], duckAudio: true);
   }
 }

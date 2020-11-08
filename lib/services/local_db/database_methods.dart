@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:strooper/locator.dart';
 import 'package:strooper/services/local_db/game_database_service.dart';
 
-class SplashViewModel extends ChangeNotifier {
+class DatabaseMethods {
   static final GameDatabaseService _gameDatabaseService =
       locator<GameDatabaseService>();
 
@@ -13,10 +12,15 @@ class SplashViewModel extends ChangeNotifier {
     await _gameDatabaseService.init();
 
     await _loadAssets();
-    print(
-        '--------------- SplashScreen: SoundStatus: ${_gameDatabaseService.soundStatus} '
-        '|| ${_gameDatabaseService.highScore} --------------');
   }
+
+  static bool getSoundStatus() => _gameDatabaseService.soundStatus;
+  static int getHighScore() => _gameDatabaseService.highScore;
+
+  static saveSoundStatus(bool status) =>
+      _gameDatabaseService.saveSoundStatus(status);
+
+  static saveHighScore(int score) => _gameDatabaseService.saveHighScore(score);
 
   static Future _loadAssets() async {
     precachePicture(

@@ -11,7 +11,6 @@ class GameDatabaseService {
   int _highScore;
 
   Future init() async {
-    print('--------------- 1: Called: GameDatabase - Init() --------------');
     final appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDirectory.path);
@@ -26,17 +25,24 @@ class GameDatabaseService {
   bool get soundStatus => _soundStatus;
   int get highScore => _highScore;
 
-  void saveSoundStatus(bool status) {
+  void saveSoundStatus(bool status) async{
+    var _box = await _openDatabase();
+
     _box.put(keys.soundStatus, status);
     log('Update soundStatus: $status');
 
-    closeDatabase();
+    _closeDatabase();
   }
 
-  void saveHighScore(int score) {
+  void saveHighScore(int score) async {
+    var _box = await _openDatabase();
+
     _box.put(keys.highScore, score);
     log('Updated highScore: $score');
+
+    _closeDatabase();
   }
 
-  void closeDatabase() => Hive.close();
+  Future _openDatabase() => Hive.openBox(keys.hiveBox);
+  void _closeDatabase() => Hive.close();
 }

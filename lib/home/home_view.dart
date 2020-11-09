@@ -100,6 +100,19 @@ class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
                       // TODO: add duration parameter
                     ),
 
+                    MaterialButton(
+                      color: Colors.pinkAccent,
+                      onPressed: () {
+                        bool result =
+                            Provider.of<HomeViewModel>(context, listen: false)
+                                .saveScore(520);
+                        result
+                            ? debugPrint('High Score 120 is saved')
+                            : debugPrint('Low Score! Play Again.');
+                      },
+                      child: Text('Set Score: 520'),
+                    ),
+
                     // Clouds and "@FutureGrit" label
                     Stack(
                       alignment: Alignment.bottomCenter,

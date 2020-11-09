@@ -7,7 +7,6 @@ import 'package:strooper/services/local_db/database_methods.dart';
 
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/router.dart' as router;
-import 'package:strooper/constants/route_paths.dart' as routes;
 import 'package:strooper/home/widgets/splash_widget.dart';
 
 void main() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-// import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
@@ -19,7 +18,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
   /// To access 'BuildContext' that does include the provider so it can be used
   /// in accessing view model in life cycle states.
-  // HomeViewModel homeViewModel;
   BuildContext modelBuildContext;
 
   @override
@@ -32,7 +30,6 @@ class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
   void dispose() {
     super.dispose();
     WidgetsBinding.instance.removeObserver(this);
-    // Hive.close();
   }
 
   @override

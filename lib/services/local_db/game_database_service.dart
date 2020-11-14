@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -7,8 +8,6 @@ import 'package:strooper/services/local_db/db_keys.dart' as keys;
 
 class GameDatabaseService {
   Box _box;
-  bool _soundStatus;
-  int _highScore;
 
   Future init() async {
     final appDocumentDirectory =
@@ -22,27 +21,46 @@ class GameDatabaseService {
     _highScore = _box.get(keys.highScore, defaultValue: 0);
   }
 
+  bool _soundStatus;
   bool get soundStatus => _soundStatus;
+
+  int _highScore;
   int get highScore => _highScore;
 
-  void saveSoundStatus(bool status) async{
+  Future getHighScore() async {
     var _box = await _openDatabase();
 
-    _box.put(keys.soundStatus, status);
+    _highScore = await _box.get(keys.soundStatus, defaultValue: false);
+
+    _closeDatabase();
+  }
+
+  Future saveSoundStatus(bool status) async {
+    var _box = await _openDatabase();
+
+    await _box.put(keys.soundStatus, status);
     log('Update soundStatus: $status');
 
     _closeDatabase();
   }
 
-  void saveHighScore(int score) async {
+  Future saveHighScore(int score) async {
     var _box = await _openDatabase();
 
-    _box.put(keys.highScore, score);
-    log('Updated highScore: $score');
+    _highScore = score;
+    await _box.put(keys.highScore, score);
+    log('Updated highScore: $_highScore');
 
     _closeDatabase();
   }
 
-  Future _openDatabase() => Hive.openBox(keys.hiveBox);
-  void _closeDatabase() => Hive.close();
+  Future _openDatabase() {
+    print('------------------- Database OPEN ---------------');
+    return Hive.openBox(keys.hiveBox);
+  }
+
+  void _closeDatabase() {
+    print('------------------- Database CLOSED ---------------');
+    Hive.close();
+  }
 }

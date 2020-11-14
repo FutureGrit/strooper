@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:strooper/home/score_view_model.dart';
 import 'package:strooper/locator.dart';
-import 'package:strooper/play/play_view_model.dart';
 
 class PlayView extends StatelessWidget {
+  // TODO: remove scoreViewModel because score will be checked and saved only form game over screen.
   final ScoreViewModel model = locator<ScoreViewModel>();
 
   @override
@@ -24,12 +23,12 @@ class PlayView extends StatelessWidget {
                 // bool result =
                 // Provider.of<PlayViewModel>(context, listen: false)
                 //     .checkAnswer(1640);
-                model.checkScore(newScore: 1940);
+                model.checkScore(newScore: 2088);
                 // result
                 //     ? debugPrint('High Score 120 is saved')
                 //     : debugPrint('Low Score! Play Again.');
               },
-              child: Text('High Score: 1940'),
+              child: Text('High Score: 2088'),
             ),
             MaterialButton(
               color: Colors.amberAccent,
@@ -37,12 +36,12 @@ class PlayView extends StatelessWidget {
                 // bool result =
                 // Provider.of<PlayViewModel>(context, listen: false)
                 //     .checkAnswer(288);
-                model.checkScore(newScore: 430);
+                model.checkScore(newScore: 2060);
                 // result
                 //     ? debugPrint('High Score 120 is saved')
                 //     : debugPrint('Low Score! Play Again.');
               },
-              child: Text('Low Score: 430'),
+              child: Text('Low Score: 2060'),
             ),
           ],
         ),

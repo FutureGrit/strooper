@@ -1,75 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/home/home_view_model.dart';
-import 'package:strooper/home/sound_methods.dart';
-import 'package:strooper/home/sound_view_model.dart';
+
 import 'package:strooper/home/widgets/app_bar_widget.dart';
 import 'package:strooper/home/widgets/cloud_widget.dart';
-import 'package:strooper/locator.dart';
 import 'package:strooper/play/play_view.dart';
+import 'package:strooper/services/sounds/sound_methods.dart';
 
-class HomeView extends StatefulWidget {
-  @override
-  _HomeViewState createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView>
-//    with WidgetsBindingObserver
-{
-  /// To access 'BuildContext' that does include the provider so it can be used
-  /// in accessing view model in life cycle states.
-  //BuildContext modelBuildContext;
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addObserver(this);
-  // }
-  //
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   WidgetsBinding.instance.removeObserver(this);
-  // }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   super.didChangeAppLifecycleState(state);
-  //
-  //   HomeViewModel homeViewModel =
-  //       Provider.of<HomeViewModel>(modelBuildContext, listen: false);
-  //
-  //   // TODO: Use switch to check the state
-  //   if (state == AppLifecycleState.paused) {
-  //     // went to Background
-  //     homeViewModel.pauseBackgroundMusic();
-  //   }
-  //
-  //   if (state == AppLifecycleState.resumed) {
-  //     // came back to Foreground
-  //     homeViewModel.resumeBackgroundMusic();
-  //   }
-  //
-  //   if (state == AppLifecycleState.inactive) {
-  //     // inactive because split-screen app, a phone call etc...
-  //     homeViewModel.pauseBackgroundMusic();
-  //   }
-  // }
-
-  // TODO: exit on back button pressed twice
+class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('^^^^^^^^^^^^^^^^^^^ Inside home_view ^^^^^^^^^^^^^^^^^');
-    // TODO: Pre load all required image assets
     return WillPopScope(
-      onWillPop: _onBackPressed,
+      onWillPop: () async => _onBackPressed(buildContext: context),
       child: Scaffold(
         body: Container(
           width: double.infinity,
@@ -94,19 +41,12 @@ class _HomeViewState extends State<HomeView>
                   width: MediaQuery.of(context).size.width / 2.2,
                 ),
                 onTap: () {
-                  print(
-                      '************ Play start button sound *****************');
                   SoundMethods.playButtonSound(
                       action: StrooperActions.START_GAME);
-                  // SoundViewModel soundViewModel = locator<SoundViewModel>();
-                  // soundViewModel.playButtonSound(
-                  //     action: StrooperActions.START_GAME);
-                  // soundViewModel.sta
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PlayView()));
-                  //model.startGame();
-                  // Provider.of<HomeViewModel>(context, listen: false)
-                  //     .startGame();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PlayView()),
+                  );
                 },
                 // TODO: add duration parameter
               ),
@@ -133,9 +73,9 @@ class _HomeViewState extends State<HomeView>
   }
 
   /// Confirmation alert dialog to exit from game, when back button is pressed
-  Future<bool> _onBackPressed() {
+  Future<bool> _onBackPressed({@required BuildContext buildContext}) {
     return showDialog(
-      context: context,
+      context: buildContext,
       builder: (context) => AlertDialog(
         title: Text('Warning'),
         content: Text('Do you really want to exit from STROOPER Game?'),

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:strooper/home/home_view.dart';
 
 import 'package:strooper/locator.dart';
-import 'package:strooper/services/local_db/database_methods.dart';
+import 'package:strooper/services/local_db/database_setup.dart';
 
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/router.dart' as router;
@@ -25,7 +25,7 @@ class Strooper extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.generateRoute,
       home: FutureBuilder(
-        future: DatabaseMethods.initialise(),
+        future: DatabaseSetup.initialise(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError)

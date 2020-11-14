@@ -9,11 +9,10 @@ class HighScoreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-        //TODO: as ChangeNotifierProvider.value provide existing changeNotifier so we can try to us this else where
-        value: locator<ScoreViewModel>(),
-
-        ///create: (context) => locator<ScoreViewModel>(),
-        child: Consumer<ScoreViewModel>(builder: (context, model, child) {
+      //TODO: as ChangeNotifierProvider.value provide existing changeNotifier so we can try to us this else where
+      value: locator<ScoreViewModel>(),
+      child: Consumer<ScoreViewModel>(
+        builder: (context, model, child) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -23,14 +22,15 @@ class HighScoreWidget extends StatelessWidget {
               ),
               Text(
                 // TODO: Get high score from local DB
-                //model.highScore.toString(),
                 Provider.of<ScoreViewModel>(context, listen: false)
-                    .updatedHighScore()
+                    .highScore
                     .toString(),
                 style: highScoreTextStyle.copyWith(fontSize: 30),
               )
             ],
           );
-        }));
+        },
+      ),
+    );
   }
 }

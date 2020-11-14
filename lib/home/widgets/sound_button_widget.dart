@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
-import 'package:strooper/home/home_view_model.dart';
-import 'package:strooper/home/sound_methods.dart';
-import 'package:strooper/home/sound_view_model.dart';
-import 'package:strooper/locator.dart';
+import 'package:strooper/services/sounds/sound_methods.dart';
 
 class SoundButtonWidget extends StatefulWidget {
   @override
@@ -14,11 +10,7 @@ class SoundButtonWidget extends StatefulWidget {
 
 class _SoundButtonWidgetState extends State<SoundButtonWidget>
     with WidgetsBindingObserver {
-  // SoundViewModel soundViewModel;
-  //bool isSoundEnabled = SoundMethods.soundStatus;
-
   // TODO: Move soundEnabled variable to service "strooper_preference.dart"
-  //bool soundEnabled = true;
 
   @override
   void initState() {
@@ -54,24 +46,21 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => SoundViewModel(),
-        child: Consumer<SoundViewModel>(builder: (context, model, child) {
-          return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              switchInCurve: Curves.easeIn,
-              switchOutCurve: Curves.easeOut,
-              // TODO: Create method for repeated code for sound button
-              child: SoundMethods.soundStatus
-                  ? soundButton(
-                      context: context,
-                      key: 'sound-on',
-                      imagePath: 'images/sound-on.svg')
-                  : soundButton(
-                      context: context,
-                      key: 'sound-off',
-                      imagePath: 'images/sound-off.svg'));
-        }));
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeIn,
+      switchOutCurve: Curves.easeOut,
+      // TODO: Create method for repeated code for sound button
+      child: SoundMethods.soundStatus
+          ? soundButton(
+              context: context,
+              key: 'sound-on',
+              imagePath: 'images/sound-on.svg')
+          : soundButton(
+              context: context,
+              key: 'sound-off',
+              imagePath: 'images/sound-off.svg'),
+    );
   }
 
   Widget soundButton(
@@ -82,7 +71,6 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
         key: Key(key),
         child: GestureDetector(
           onTap: () {
-            print('Updating sound status from SoundViewModel');
             setState(() {
               SoundMethods.updateSoundStatus();
             });

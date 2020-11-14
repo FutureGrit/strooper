@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -39,7 +36,6 @@ class GameDatabaseService {
     var _box = await _openDatabase();
 
     await _box.put(keys.soundStatus, status);
-    log('Update soundStatus: $status');
 
     _closeDatabase();
   }
@@ -49,18 +45,15 @@ class GameDatabaseService {
 
     _highScore = score;
     await _box.put(keys.highScore, score);
-    log('Updated highScore: $_highScore');
 
     _closeDatabase();
   }
 
   Future _openDatabase() {
-    print('------------------- Database OPEN ---------------');
     return Hive.openBox(keys.hiveBox);
   }
 
   void _closeDatabase() {
-    print('------------------- Database CLOSED ---------------');
     Hive.close();
   }
 }

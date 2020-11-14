@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strooper/locator.dart';
 import 'package:strooper/services/local_db/game_database_service.dart';
 
-class DatabaseMethods {
+class DatabaseSetup {
   static final GameDatabaseService _gameDatabaseService =
       locator<GameDatabaseService>();
 
@@ -13,14 +13,6 @@ class DatabaseMethods {
 
     await _loadAssets();
   }
-
-  static bool getSoundStatus() => _gameDatabaseService.soundStatus;
-  static int getHighScore() => _gameDatabaseService.highScore;
-
-  static saveSoundStatus(bool status) =>
-      _gameDatabaseService.saveSoundStatus(status);
-
-  static saveHighScore(int score) => _gameDatabaseService.saveHighScore(score);
 
   static Future _loadAssets() async {
     precachePicture(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/enums/strooper_actions.dart';
-import 'package:strooper/home/home_view_model.dart';
-import 'package:strooper/home/sound_methods.dart';
+
 import 'package:strooper/home/widgets/high_score_widget.dart';
 import 'package:strooper/home/widgets/sound_button_widget.dart';
+import 'package:strooper/services/sounds/sound_methods.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
@@ -35,7 +34,6 @@ class AppBarWidget extends StatelessWidget {
                     action: StrooperActions.INSTRUCTION_SHOW);
                 print('--- Navigating to Instruction View ----');
                 // TODO: open a dialog box with "how to play" instruction
-                //Provider.of<HomeViewModel>(context, listen: false).showInstruction();
               },
               child: SvgPicture.asset(
                 'images/info.svg',

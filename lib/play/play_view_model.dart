@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:strooper/locator.dart';
 
-import 'package:strooper/services/local_db/database_methods.dart';
+import 'package:strooper/services/local_db/database_setup.dart';
 import 'package:strooper/services/local_db/game_database_service.dart';
 
 class PlayViewModel extends ChangeNotifier {

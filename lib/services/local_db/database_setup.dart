@@ -16,6 +16,13 @@ class DatabaseSetup {
 
   static Future _loadAssets() async {
     precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/clouds.svg'),
+        null);
+    precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'images/start_button.svg'),
+        null);
+    precachePicture(
         ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/sound-on.svg'),
         null);
     precachePicture(
@@ -29,10 +36,14 @@ class DatabaseSetup {
         null);
     precachePicture(
         ExactAssetPicture(
-            SvgPicture.svgStringDecoder, 'images/start_button.svg'),
+            SvgPicture.svgStringDecoder, 'images/answer_right.svg'),
         null);
     precachePicture(
-        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/clouds.svg'),
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'images/answer_wrong.svg'),
+        null);
+    precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/timer_bg.svg'),
         null);
   } // End of loadAssets method
 }

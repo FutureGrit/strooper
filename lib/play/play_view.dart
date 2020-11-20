@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,11 @@ import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/home/score_view_model.dart';
 import 'package:strooper/locator.dart';
+import 'package:strooper/play/models/model.dart';
+import 'package:strooper/play/models/widget.dart';
 import 'package:strooper/play/widgets/new_score_widget.dart';
+
+import 'models/arc_text.dart';
 
 class PlayView extends StatelessWidget {
   // TODO: remove scoreViewModel because score will be checked and saved only form game over screen.
@@ -36,7 +41,8 @@ class PlayView extends StatelessWidget {
                     top: paddingNormal,
                     left: paddingNormal,
                     right: paddingNormal,
-                    bottom: paddingSmall + countdownWidgetRadius,
+                    bottom:
+                        paddingLarge, //paddingSmall + countdownWidgetRadius,
                   ),
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
@@ -74,13 +80,50 @@ class PlayView extends StatelessWidget {
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
+                      CircularText(children: [
+                        TextItem(
+                          text: Text(
+                            "Timer".toUpperCase(),
+                            style: TextStyle(
+                                fontSize: 9,
+                                color: Colors.white,
+                                fontFamily: "FredokaOne"),
+                          ),
+                          space: 13,
+                          startAngle: 90,
+                          startAngleAlignment: StartAngleAlignment.center,
+                          direction: CircularTextDirection.anticlockwise,
+                        ),
+                      ]),
                       Container(
                         //color: Colors.cyanAccent,
                         child: SvgPicture.asset(
                           'images/timer_bg.svg',
-                          width: 60,
+                          // TODO: Set width in const
+                          width: (countdownWidgetRadius * 2) - paddingLarge,
                         ),
                       ),
+                      //
+                      // Container(
+                      //   height: (countdownWidgetRadius - paddingNormal) * 2,
+                      //   width: (countdownWidgetRadius - paddingNormal) * 2,
+                      //   //color: Colors.yellow,
+                      //   decoration: BoxDecoration(
+                      //       shape: BoxShape.circle,
+                      //       // color: Colors.yellow,
+                      //       gradient: RadialGradient(
+                      //           radius: 1,
+                      //           colors: [
+                      //             Color(0xffE95059),
+                      //             Color(0xff861960),
+                      //           ],
+                      //           stops: [
+                      //             0.2,
+                      //             0.3,
+                      //           ],
+                      //           center: Alignment(-0.5, -1),
+                      //           focal: Alignment(0.6, -0.1))),
+                      // ),
                       Text(
                         "2",
                         style: TextStyle(fontSize: 26, color: Colors.white),
@@ -107,7 +150,8 @@ class PlayView extends StatelessWidget {
                   ),
                   BounceAnimation(
                     onTap: () {
-                      print("^^^^^^^^^^^^^ Right Answer ^^^^^^^^^^^^^^^");
+                      print(
+                          "^^^^^^^^^^^^^ Right Answer Kanishk ^^^^^^^^^^^^^^^");
                     },
                     bounceWidget: SvgPicture.asset(
                       'images/answer_right.svg',

@@ -41,8 +41,7 @@ class PlayView extends StatelessWidget {
                     top: paddingNormal,
                     left: paddingNormal,
                     right: paddingNormal,
-                    bottom:
-                        paddingLarge, //paddingSmall + countdownWidgetRadius,
+                    bottom: countdownWidgetRadius - paddingNormal,
                   ),
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
@@ -72,8 +71,9 @@ class PlayView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // color: Colors.amberAccent,
                 ),
+
+                /// Timer widget starts here
                 Positioned(
                   left: paddingNormal,
                   right: paddingNormal,
@@ -95,37 +95,24 @@ class PlayView extends StatelessWidget {
                           direction: CircularTextDirection.anticlockwise,
                         ),
                       ]),
+
+                      /// Countdown background starts here
                       Container(
-                        //color: Colors.cyanAccent,
-                        child: SvgPicture.asset(
-                          'images/timer_bg.svg',
-                          // TODO: Set width in const
-                          width: (countdownWidgetRadius * 2) - paddingLarge,
+                        height: (countdownWidgetRadius - paddingNormal) * 2,
+                        width: (countdownWidgetRadius - paddingNormal) * 2,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(
+                            radius: 1,
+                            colors: [Color(0xffE95059), Color(0xff861960)],
+                            stops: [.3, .6],
+                            center: Alignment(0.1, -0.5), //.2, -0.8
+                          ),
                         ),
                       ),
-                      //
-                      // Container(
-                      //   height: (countdownWidgetRadius - paddingNormal) * 2,
-                      //   width: (countdownWidgetRadius - paddingNormal) * 2,
-                      //   //color: Colors.yellow,
-                      //   decoration: BoxDecoration(
-                      //       shape: BoxShape.circle,
-                      //       // color: Colors.yellow,
-                      //       gradient: RadialGradient(
-                      //           radius: 1,
-                      //           colors: [
-                      //             Color(0xffE95059),
-                      //             Color(0xff861960),
-                      //           ],
-                      //           stops: [
-                      //             0.2,
-                      //             0.3,
-                      //           ],
-                      //           center: Alignment(-0.5, -1),
-                      //           focal: Alignment(0.6, -0.1))),
-                      // ),
                       Text(
                         "2",
+                        //TODO: set text style const
                         style: TextStyle(fontSize: 26, color: Colors.white),
                       ),
                     ],

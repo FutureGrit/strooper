@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 
-enum CircularTextDirection { clockwise, anticlockwise }
-
-enum CircularTextPosition { outside, inside }
-
-enum StartAngleAlignment { start, center, end }
-
 class TextItem {
   /// Text
   final Text text;
@@ -16,26 +10,13 @@ class TextItem {
   /// Text starting position
   final double startAngle;
 
-  /// Text alignment around [startAngle]
-  /// [StartAngleAlignment.start] text will starts from [startAngle]
-  /// [StartAngleAlignment.center] text will be centered on [startAngle]
-  /// [StartAngleAlignment.end] text will ends on [startAngle]
-  final StartAngleAlignment startAngleAlignment;
-
-  /// Text direction either clockwise or anticlockwise
-  final CircularTextDirection direction;
-
   TextItem({
     @required this.text,
-    this.space = 10,
-    this.startAngle = 0,
-    this.startAngleAlignment = StartAngleAlignment.start,
-    this.direction = CircularTextDirection.clockwise,
+    this.space = 13,
+    this.startAngle = 90,
   })  : assert(text != null),
         assert(space != null && space >= 0),
-        assert(startAngle != null),
-        assert(startAngleAlignment != null),
-        assert(direction != null);
+        assert(startAngle != null);
 
   bool isChanged(TextItem oldTextItem) {
     bool isTextChanged() {
@@ -45,8 +26,6 @@ class TextItem {
 
     return isTextChanged() ||
         oldTextItem.space != space ||
-        oldTextItem.startAngle != startAngle ||
-        oldTextItem.startAngleAlignment != startAngleAlignment ||
-        oldTextItem.direction != direction;
+        oldTextItem.startAngle != startAngle;
   }
 }

@@ -15,5 +15,6 @@ const verticalSpacingMedium = SizedBox(width: 20);
 // ---- Horizontal Spacing ----
 const horizontalSpacingSmall = SizedBox(width: 16);
 
-// ---- Countdown Widget Radius ----
-const countdownWidgetRadius = 45.0; //28.0;
+// ---- Countdown Timer Widget ----
+const countdownWidgetRadius = 34.0; //28.0;
+const backgroundAndTimerSpacing = 8.0;

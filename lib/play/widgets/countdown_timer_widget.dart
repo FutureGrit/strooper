@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_circular_text/circular_text.dart';
+
 import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/play/models/model.dart';
-import 'package:strooper/play/models/widget.dart';
 
 class CountdownTimerWidget extends StatelessWidget {
   @override
@@ -10,16 +10,24 @@ class CountdownTimerWidget extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         CircularText(
-          childText: TextItem(
-            text: Text(
-              "Timer".toUpperCase(),
-              style: TextStyle(
-                  fontSize: 9, color: Colors.white, fontFamily: "FredokaOne"),
+          radius: countdownWidgetRadius,
+          position: CircularTextPosition.outside,
+          children: [
+            TextItem(
+              text: Text(
+                "Timer".toUpperCase(),
+                style: TextStyle(
+                    fontSize: 9, color: Colors.white, fontFamily: "FredokaOne"),
+              ),
+              direction: CircularTextDirection.anticlockwise,
+              startAngleAlignment: StartAngleAlignment.center,
+              startAngle: 90,
+              space: 13,
             ),
-          ),
+          ],
         ),
 
-        /// Countdown background starts here
+        /// Countdown background
         Container(
           height: (countdownWidgetRadius * 2) - backgroundAndTimerSpacing,
           width: (countdownWidgetRadius * 2) - backgroundAndTimerSpacing,
@@ -29,10 +37,11 @@ class CountdownTimerWidget extends StatelessWidget {
               radius: 1,
               colors: [Color(0xffE95059), Color(0xff861960)],
               stops: [.3, .6],
-              center: Alignment(0.1, -0.5), //.2, -0.8
+              center: Alignment(0.1, -0.5),
             ),
           ),
         ),
+
         Text(
           "2",
           //TODO: set text style const

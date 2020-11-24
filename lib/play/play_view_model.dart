@@ -1,17 +1,30 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:strooper/constants/game_colors.dart';
 import 'package:strooper/locator.dart';
+import 'package:strooper/model/question.dart';
 
 import 'package:strooper/services/local_db/database_setup.dart';
 import 'package:strooper/services/local_db/game_database_service.dart';
+import 'package:strooper/play/random.dart';
 
 class PlayViewModel extends ChangeNotifier {
   final GameDatabaseService _gameDatabaseService =
       locator<GameDatabaseService>();
 
   int get highScore => _gameDatabaseService.highScore;
+
+  String colorName;
+  Color colorValue;
+  bool answer = false;
+  int newScore = 0;
+
+  PlayViewModel() {
+    nextQuestion();
+  }
 
   void restartGame() {
     // TODO: Play button sound
@@ -46,13 +59,34 @@ class PlayViewModel extends ChangeNotifier {
     return false;
   }
 
-  nextQuestion() {
+  void nextQuestion() {
     // TODO: Provide random Color Name with color
     // TODO: return a model "question: Color, Text, isValid"
+    int colorNameIndex = Random().randomIndex();
+    int colorValueIndex;
+
+    answer = Random().nextBool();
+
+    if (answer) {
+      colorValueIndex = colorNameIndex;
+    } else {
+      colorValueIndex = Random().randomIndex(exclude: colorNameIndex);
+    }
+
+    colorName = colorNames[colorNameIndex];
+    colorValue = colors[colorValueIndex];
   }
 
-  checkAnswer(int tempScore) {
-    bool result = _saveScore(newScore: tempScore);
+  //checkAnswer(int tempScore) {
+  checkAnswer(bool userPickedAnswer) {
+    //bool result = _saveScore(newScore: tempScore);
+
+    if (userPickedAnswer == answer) {
+      newScore++;
+      print('------------ Update Score : $newScore ----------------');
+      nextQuestion();
+      notifyListeners();
+    }
     // set isAnswerSubmitted = true
     // TODO: check if answer(true or false) is equal to isValid
     // TODO: if yes then call
@@ -68,8 +102,9 @@ class PlayViewModel extends ChangeNotifier {
     // set isGameOVer to true then
   }
 
-  increaseCurrentScore() {
+  increaseScore() {
     // TODO: update score by one and notify
+    newScore++;
   }
 
   // this method will be future/Stream and will use system time to wait and notify

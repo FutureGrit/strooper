@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_text/circular_text.dart';
+import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/ui_utils.dart';
+import 'package:strooper/play/timer_view_model.dart';
+import 'package:strooper/play/widgets/timer_value.dart';
 
 class CountdownTimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('[5]-------- CountdownTimerWidget rebuilding --------');
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -42,11 +46,11 @@ class CountdownTimerWidget extends StatelessWidget {
           ),
         ),
 
-        Text(
-          "2",
-          //TODO: set text style const
-          style: TextStyle(fontSize: 26, color: Colors.white),
-        ),
+        /// Countdown timer value status
+        ChangeNotifierProvider(
+          create: (context) => TimerViewModel(),
+          child: TimerValue(),
+        )
       ],
     );
   }

@@ -12,20 +12,23 @@ class PlayView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('[1]-------- PlayView Rebuilding --------');
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(
-            vertical: paddingMedium, horizontal: paddingLarge),
-        decoration: appBackgroundDecoration,
-        child: ChangeNotifierProvider(
-          create: (context) => QuestionViewModel(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              NewScoreWidget(),
-              GameBodyWidget(),
-              AnswerButtonsWidget()
-            ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.symmetric(
+              vertical: paddingMedium, horizontal: paddingLarge),
+          decoration: appBackgroundDecoration,
+          child: ChangeNotifierProvider(
+            create: (context) => QuestionViewModel(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                NewScoreWidget(),
+                GameBodyWidget(),
+                AnswerButtonsWidget()
+              ],
+            ),
           ),
         ),
       ),

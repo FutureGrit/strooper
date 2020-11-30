@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/play/timer_view_model.dart';
-import 'package:strooper/play/widgets/timer_value.dart';
+import 'package:strooper/play/widgets/timer_value_widget.dart';
 
 class CountdownTimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('[5]-------- CountdownTimerWidget rebuilding --------');
+    print('[5]-------- CountdownTimerWidget Rebuilding --------');
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -49,7 +49,7 @@ class CountdownTimerWidget extends StatelessWidget {
         /// Countdown timer value status
         ChangeNotifierProvider(
           create: (context) => TimerViewModel(),
-          child: TimerValue(),
+          child: TimerValueWidget(),
         )
       ],
     );

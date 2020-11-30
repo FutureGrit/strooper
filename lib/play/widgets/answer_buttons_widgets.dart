@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/play/only_one_pointer_recognizer.dart';
-import 'package:strooper/play/play_view_model.dart';
+import 'package:strooper/helpers/one_tap_recognizer.dart';
+import 'package:strooper/play/question_view_model.dart';
 import 'package:strooper/services/sounds/sound_methods.dart';
 
 class AnswerButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return OnlyOnePointerRecognizerWidget(
+    debugPrint('[7]-------- AnswerButtonWidget Rebuilding -------');
+    return OneTapRecognizerWidget(
       child: Container(
         margin: EdgeInsets.only(bottom: marginLarge),
         child: Row(
@@ -43,7 +45,7 @@ class AnswerButtonsWidget extends StatelessWidget {
       duration: 80,
       onTap: () {
         SoundMethods.playButtonSound(action: StrooperActions.ANSWER_BUTTON);
-        Provider.of<PlayViewModel>(buildContext, listen: false)
+        Provider.of<QuestionViewModel>(buildContext, listen: false)
             .checkAnswer(value);
       },
       bounceWidget: SvgPicture.asset(

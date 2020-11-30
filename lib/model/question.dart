@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 
 class Question {
   String colorName;
-  Color color;
+  Color colorValue;
   bool answer;
 
   Question({
-    @required this.colorName,
-    @required this.color,
-    @required this.answer,
+    this.colorName,
+    this.colorValue,
+    this.answer,
   });
 }

@@ -4,10 +4,15 @@ import 'dart:math';
 import 'package:strooper/constants/game_colors.dart';
 import 'package:strooper/model/question.dart';
 import 'package:strooper/helpers/random_index.dart';
+import 'package:strooper/services/navigation_service.dart';
+import 'package:strooper/constants/route_paths.dart';
+import 'package:strooper/locator.dart';
 
 const int countdownStaringValue = 30;
 
 class PlayService {
+  NavigationService _navigationService = locator<NavigationService>();
+
   Question _question = Question();
   int newScore = 0;
 
@@ -61,10 +66,11 @@ class PlayService {
   void gameOver() {
     print('[8]-------- GAME OVER : $newScore--------');
     stopTimer();
-    newScore = 0;
     // TODO: Redirect to result screen
     // TODO: Check if newScore with highScore
     // TODO: Call _saveScore method
+    _navigationService.popAndNavigateTo(GameOverRoute, argument: newScore);
+    newScore = 0;
   }
 
   /// [quitGame] will be called if game is closed abruptly. In this situation

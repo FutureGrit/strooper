@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:strooper/constants/game_colors.dart';
+import 'package:strooper/model/game_over.dart';
 import 'package:strooper/model/question.dart';
 import 'package:strooper/helpers/random_index.dart';
+import 'package:strooper/services/high_score_service.dart';
+import 'package:strooper/services/local_db/game_database_service.dart';
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/constants/route_paths.dart';
 import 'package:strooper/locator.dart';
@@ -12,6 +15,8 @@ const int countdownStaringValue = 30;
 
 class PlayService {
   NavigationService _navigationService = locator<NavigationService>();
+  // GameDatabaseService _gameDatabaseService = locator<GameDatabaseService>();
+  HighScoreService _highScoreService = locator<HighScoreService>();
 
   Question _question = Question();
   int newScore = 0;
@@ -66,10 +71,15 @@ class PlayService {
   void gameOver() {
     print('[8]-------- GAME OVER : $newScore--------');
     stopTimer();
+    // GameOver scoreDetails = GameOver();
+    // scoreDetails.newScore = newScore;
+    // scoreDetails.highScore = _highScoreService.highScore;
+    // scoreDetails.isHighest = _highScoreService.checkScore(newScore);
     // TODO: Redirect to result screen
     // TODO: Check if newScore with highScore
     // TODO: Call _saveScore method
-    _navigationService.popAndNavigateTo(GameOverRoute, argument: newScore);
+    _navigationService.popAndNavigateTo(GameOverRoute,
+        argument: _highScoreService.checkScore(newScore));
     newScore = 0;
   }
 

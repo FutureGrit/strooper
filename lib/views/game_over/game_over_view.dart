@@ -16,7 +16,6 @@ class GameOverView extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               vertical: paddingMedium, horizontal: paddingLarge),
           decoration: appBackgroundDecoration,
-          // TODO: We don't need ChangeNotifierProvider. Use other provider
           child: Center(
             child: scoreDetails.isHighest
                 ? Column(

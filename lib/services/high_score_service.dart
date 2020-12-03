@@ -10,8 +10,6 @@ class HighScoreService {
   final GameDatabaseService _gameDatabaseService =
       locator<GameDatabaseService>();
 
-  //GameOver scoreDetails = GameOver();
-
   GameOver checkScore(int score) {
     if (score >= _gameDatabaseService.highScore) {
       _gameDatabaseService.saveHighScore(score);
@@ -22,6 +20,4 @@ class HighScoreService {
   }
 
   int get highScore => _gameDatabaseService.highScore;
-
-  //GameOver get scoreDetail => scoreDetails;
 }

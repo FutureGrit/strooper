@@ -9,7 +9,7 @@ import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/constants/route_paths.dart';
 import 'package:strooper/locator.dart';
 
-const int countdownStaringValue = 30;
+const int countdownStaringValue = 3;
 
 class PlayService {
   NavigationService _navigationService = locator<NavigationService>();
@@ -47,7 +47,7 @@ class PlayService {
 
   void startTimer() {
     _timer = new Timer.periodic(
-      Duration(seconds: 1),
+      Duration(milliseconds: 750),
       (Timer timer) {
         print('[T]-------- Timer: $startTimerAt --------');
         if (startTimerAt < 1) {

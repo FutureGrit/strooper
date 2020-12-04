@@ -11,7 +11,8 @@ class HighScoreWidget extends StatelessWidget {
       create: (context) => HighScoreViewModel(),
       child: Consumer<HighScoreViewModel>(
         builder: (context, model, child) {
-          debugPrint('[0]-------- HighScoreWidget Rebuilding --------');
+          debugPrint(
+              '[0]-------- HighScoreWidget Rebuilding: ${model.highScore} --------');
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

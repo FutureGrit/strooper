@@ -10,10 +10,12 @@ class HighScoreService {
   final GameDatabaseService _gameDatabaseService =
       locator<GameDatabaseService>();
 
-  GameOver checkScore(int score) {
+  Future checkScore(int score) async {
     if (score >= _gameDatabaseService.highScore) {
-      _gameDatabaseService.saveHighScore(score);
+      await _gameDatabaseService.saveHighScore(score);
+
       updateHighScoreWidget();
+      print('[x]-------- Check Score: $highScore --------');
       return GameOver(highScore: score, isHighest: true);
     }
     return GameOver(newScore: score, highScore: highScore, isHighest: false);

@@ -49,6 +49,7 @@ class PlayService {
     _timer = new Timer.periodic(
       Duration(seconds: 1),
       (Timer timer) {
+        print('[T]-------- Timer: $startTimerAt --------');
         if (startTimerAt < 1) {
           gameOver();
         } else {
@@ -65,11 +66,11 @@ class PlayService {
     startTimer();
   }
 
-  void gameOver() {
+  void gameOver() async {
     print('[8]-------- GAME OVER : $newScore--------');
     stopTimer();
     _navigationService.popAndNavigateTo(GameOverRoute,
-        argument: _highScoreService.checkScore(newScore));
+        argument: await _highScoreService.checkScore(newScore));
     newScore = 0;
   }
 

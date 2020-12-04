@@ -24,14 +24,6 @@ class GameDatabaseService {
   int _highScore;
   int get highScore => _highScore;
 
-  Future getHighScore() async {
-    var _box = await _openDatabase();
-
-    _highScore = await _box.get(keys.soundStatus, defaultValue: false);
-
-    _closeDatabase();
-  }
-
   Future saveSoundStatus(bool status) async {
     var _box = await _openDatabase();
 

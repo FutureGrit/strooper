@@ -15,6 +15,7 @@ class DatabaseSetup {
   }
 
   static Future _loadAssets() async {
+    // ---- Home screen images ----
     precachePicture(
         ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/clouds.svg'),
         null);
@@ -34,6 +35,8 @@ class DatabaseSetup {
     precachePicture(
         ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/app_title.svg'),
         null);
+
+    // ---- Play screen images ----
     precachePicture(
         ExactAssetPicture(
             SvgPicture.svgStringDecoder, 'images/answer_right.svg'),
@@ -44,6 +47,19 @@ class DatabaseSetup {
         null);
     precachePicture(
         ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/timer_bg.svg'),
+        null);
+
+    // ---- Game over screen images ----
+    precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/game_over.svg'),
+        null);
+    precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'images/home_button.svg'),
+        null);
+    precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'images/restart_button.svg'),
         null);
   } // End of loadAssets method
 }

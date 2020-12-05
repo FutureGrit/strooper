@@ -25,7 +25,7 @@ class AppBarWidget extends StatelessWidget {
             // Sound on and off widget
             SoundButtonWidget(),
 
-            verticalSpacingMedium,
+            horizontalSpacingMedium,
 
             // Instruction button widget
             GestureDetector(

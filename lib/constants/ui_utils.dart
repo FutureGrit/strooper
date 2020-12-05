@@ -10,10 +10,11 @@ const paddingLarge = 30.0;
 const marginLarge = 30.0;
 
 // ---- Vertical Spacing ----
-const verticalSpacingMedium = SizedBox(width: 20);
+const verticalSpacingMedium = SizedBox(height: 20);
 
 // ---- Horizontal Spacing ----
 const horizontalSpacingSmall = SizedBox(width: 16);
+const horizontalSpacingMedium = SizedBox(width: 20);
 
 // ---- Countdown Timer Widget ----
 const countdownWidgetRadius = 34.0; //28.0;

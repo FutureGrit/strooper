@@ -7,6 +7,7 @@ import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/home/widgets/high_score_widget.dart';
 import 'package:strooper/home/widgets/sound_button_widget.dart';
 import 'package:strooper/services/sounds/sound_methods.dart';
+import 'package:strooper/views/instruction/instruction_view.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
@@ -34,6 +35,10 @@ class AppBarWidget extends StatelessWidget {
                     action: StrooperActions.INSTRUCTION_SHOW);
                 print('--- Navigating to Instruction View ----');
                 // TODO: open a dialog box with "how to play" instruction
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InstructionView()),
+                );
               },
               child: SvgPicture.asset(
                 'images/info.svg',

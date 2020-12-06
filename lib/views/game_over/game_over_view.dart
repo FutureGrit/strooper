@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/ui_utils.dart';
@@ -8,7 +7,6 @@ import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/popup_background_painter.dart';
 import 'package:strooper/model/game_over.dart';
-import 'package:strooper/play/question_view_model.dart';
 import 'package:strooper/services/sounds/sound_methods.dart';
 
 class GameOverView extends StatelessWidget {
@@ -37,7 +35,7 @@ class GameOverView extends StatelessWidget {
               alignment: AlignmentDirectional.bottomCenter,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: countdownWidgetRadius),
+                  margin: EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 2.1,
                   child: CustomPaint(
@@ -104,13 +102,10 @@ class GameOverView extends StatelessWidget {
                       },
                       bounceWidget: SvgPicture.asset(
                         "images/home_button.svg",
-                        width: (MediaQuery.of(context).size.width / 3) -
-                            paddingLarge,
+                        height: gameOverMenuButtonRadius * 2,
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
+                    SizedBox(width: 20),
                     BounceAnimation(
                       duration: 100,
                       onTap: () {
@@ -120,8 +115,7 @@ class GameOverView extends StatelessWidget {
                       },
                       bounceWidget: SvgPicture.asset(
                         "images/restart_button.svg",
-                        width: (MediaQuery.of(context).size.width / 3) -
-                            paddingLarge,
+                        height: gameOverMenuButtonRadius * 2,
                       ),
                     ),
                   ],

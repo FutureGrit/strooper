@@ -15,6 +15,11 @@ class DatabaseSetup {
   }
 
   static Future _loadAssets() async {
+    // ---- Splash screen images ----
+    precachePicture(
+        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/logo.svg'),
+        null);
+
     // ---- Home screen images ----
     precachePicture(
         ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/clouds.svg'),
@@ -60,6 +65,12 @@ class DatabaseSetup {
     precachePicture(
         ExactAssetPicture(
             SvgPicture.svgStringDecoder, 'images/restart_button.svg'),
+        null);
+
+    // ---- Instruction screen images ----
+    precachePicture(
+        ExactAssetPicture(
+            SvgPicture.svgStringDecoder, 'images/back_button.svg'),
         null);
   } // End of loadAssets method
 }

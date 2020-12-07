@@ -9,22 +9,36 @@ class InstructionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(
-            vertical: paddingLarge, horizontal: paddingMedium),
+        padding: EdgeInsets.only(top: paddingLarge),
         alignment: AlignmentDirectional.center,
         decoration: appBackgroundDecoration,
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "How to play?",
-                  style: TextStyle(fontSize: 34, color: Colors.white),
+                Flexible(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 10.5,
+                    alignment: AlignmentDirectional.center,
+                    decoration: BoxDecoration(
+                      color: Color(0x38ffffff),
+                      borderRadius: BorderRadius.horizontal(
+                        right: Radius.circular(100.0),
+                      ),
+                    ),
+                    child: Text(
+                      "How to play?",
+                      style: TextStyle(fontSize: 28, color: Colors.white),
+                    ),
+                  ),
                 ),
-                Spacer(),
-                SvgPicture.asset("images/restart_button.svg")
+                horizontalSpacingMedium,
+                SvgPicture.asset("images/back_button.svg"),
+                horizontalSpacingSmall,
               ],
             ),
+            verticalSpacingMedium,
           ],
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:strooper/home/home_view.dart';
+import 'package:strooper/home/home_view_model.dart';
 
 import 'package:strooper/locator.dart';
 import 'package:strooper/services/local_db/database_setup.dart';
@@ -31,7 +33,8 @@ class Strooper extends StatelessWidget {
             if (snapshot.hasError)
               return Text(snapshot.error.toString());
             else
-              return HomeView();
+              return ChangeNotifierProvider<HomeViewModel>(
+                  create: (context) => HomeViewModel(), child: HomeView());
           } else {
             return SplashWidget();
           }

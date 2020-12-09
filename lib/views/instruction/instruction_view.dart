@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:strooper/constants/app_colors.dart';
 
 import 'package:strooper/constants/shared_style.dart';
@@ -7,6 +8,7 @@ import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/dotted_border.dart';
 import 'package:strooper/helpers/ui_helper.dart';
+import 'package:strooper/home/home_view_model.dart';
 
 class InstructionView extends StatelessWidget {
   @override
@@ -58,7 +60,6 @@ class InstructionView extends StatelessWidget {
                         style: detailTextStyle,
                         textAlign: TextAlign.justify,
                       ),
-
                       verticalSpacingExtraLarge,
                       exampleWidget(
                         context,
@@ -74,7 +75,6 @@ class InstructionView extends StatelessWidget {
                         style: detailTextStyle,
                         textAlign: TextAlign.justify,
                       ),
-
                       verticalSpacingExtraLarge,
                       exampleWidget(
                         context,
@@ -90,7 +90,6 @@ class InstructionView extends StatelessWidget {
                         style: detailTextStyle,
                         textAlign: TextAlign.justify,
                       ),
-
                       verticalSpacingMedium,
                       Text(
                         "Please make sure to answer the question before the "

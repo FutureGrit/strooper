@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
+import 'package:strooper/home/home_view_model.dart';
 
 import 'package:strooper/home/widgets/app_bar_widget.dart';
 import 'package:strooper/home/widgets/cloud_widget.dart';
@@ -41,12 +43,11 @@ class HomeView extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 2.2,
                 ),
                 onTap: () {
+                  // TODO: move sound to view model
                   SoundMethods.playButtonSound(
                       action: StrooperActions.START_GAME);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PlayView()),
-                  );
+                  Provider.of<HomeViewModel>(context, listen: false)
+                      .startGame();
                 },
                 // TODO: add duration parameter
               ),

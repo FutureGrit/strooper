@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/helpers/ui_helper.dart';
-import 'package:strooper/home/home_view.dart';
-import 'package:strooper/home/home_view_model.dart';
 import 'package:strooper/services/local_db/database_setup.dart';
+
+import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
+import 'package:strooper/views/home/home_view.dart';
+import 'package:strooper/views/home/home_view_model.dart';
 
 class SplashView extends StatelessWidget {
   @override

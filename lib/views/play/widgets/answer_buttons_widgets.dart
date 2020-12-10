@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:strooper/constants/values.dart';
 
-import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/one_tap_recognizer.dart';
-import 'package:strooper/helpers/ui_helper.dart';
-import 'package:strooper/play/question_view_model.dart';
+import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
+import '../question_view_model.dart';
 
 class AnswerButtonsWidget extends StatelessWidget {
   @override
@@ -41,7 +43,7 @@ class AnswerButtonsWidget extends StatelessWidget {
   }) {
     return BounceAnimation(
       disableLongPress: true,
-      duration: 80,
+      duration: answerButtonAnimationDuration,
       onTap: () {
         Provider.of<QuestionViewModel>(buildContext, listen: false)
             .checkAnswer(value);

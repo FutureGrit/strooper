@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:strooper/home/home_view.dart';
-import 'package:strooper/home/home_view_model.dart';
 
 import 'package:strooper/locator.dart';
-import 'package:strooper/services/local_db/database_setup.dart';
-
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/router.dart' as router;
 import 'package:strooper/constants/route_paths.dart' as routes;
-import 'package:strooper/views/splash/splash_view.dart';
 
 void main() {
   setupLocator();

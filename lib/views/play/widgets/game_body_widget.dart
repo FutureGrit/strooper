@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:strooper/utils/ui_helper.dart';
 
-import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/play/widgets/countdown_timer_widget.dart';
-import 'package:strooper/play/widgets/question_text_widget.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
+import 'countdown_timer_widget.dart';
+import 'question_text_widget.dart';
 
 class GameBodyWidget extends StatelessWidget {
   @override
@@ -32,7 +34,7 @@ class GameBodyWidget extends StatelessWidget {
                 )
               ]),
           width: double.infinity,
-          height: MediaQuery.of(context).size.height / 4,
+          height: getHeight(context, divideBy: 4),
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: QuestionTextWidget(),

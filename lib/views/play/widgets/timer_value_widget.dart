@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:strooper/play/timer_view_model.dart';
+import '../timer_view_model.dart';
 
 class TimerValueWidget extends StatefulWidget {
   @override

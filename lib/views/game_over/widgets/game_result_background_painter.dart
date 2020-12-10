@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PopupBackgroundPainter extends CustomPainter {
-  PopupBackgroundPainter({this.backgroundColor = Colors.white});
+class GameResultBackgroundPainter extends CustomPainter {
+  GameResultBackgroundPainter({this.backgroundColor = Colors.white});
 
   final Color backgroundColor;
 

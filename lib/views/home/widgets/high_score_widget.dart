@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/home/home_view_model.dart';
+
+import '../home_view_model.dart';
 
 class HighScoreWidget extends StatelessWidget {
   @override

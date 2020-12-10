@@ -4,13 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/constants/ui_utils.dart';
+import 'package:strooper/constants/values.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/helpers/ui_helper.dart';
-import 'package:strooper/home/home_view_model.dart';
+import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/ui_utils.dart';
 
-import 'package:strooper/home/widgets/app_bar_widget.dart';
-import 'package:strooper/home/widgets/cloud_widget.dart';
+import 'home_view_model.dart';
+import 'widgets/app_bar_widget.dart';
+import 'widgets/cloud_widget.dart';
 
 class HomeView extends StatelessWidget {
   @override
@@ -35,7 +36,7 @@ class HomeView extends StatelessWidget {
 
               // Start button
               BounceAnimation(
-                duration: 140,
+                duration: startButtonAnimationDuration,
                 bounceWidget: SvgPicture.asset(
                   'images/start_button.svg',
                   width: getWidth(context, divideBy: 2.2),

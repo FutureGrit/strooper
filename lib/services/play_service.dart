@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:strooper/constants/game_colors.dart';
-import 'package:strooper/model/question.dart';
+import 'package:strooper/constants/route_paths.dart';
+import 'package:strooper/constants/values.dart';
+import 'package:strooper/utils/game_play_colors.dart';
 import 'package:strooper/helpers/random_index.dart';
+import 'package:strooper/model/question.dart';
+
 import 'package:strooper/services/high_score_service.dart';
 import 'package:strooper/services/navigation_service.dart';
-import 'package:strooper/constants/route_paths.dart';
 import 'package:strooper/locator.dart';
-
-const int countdownStaringValue = 3;
 
 class PlayService {
   NavigationService _navigationService = locator<NavigationService>();
@@ -39,15 +39,15 @@ class PlayService {
       colorValueIndex = Random().randomIndex(exclude: colorNameIndex);
     }
 
-    _question.colorName = colorNames[colorNameIndex];
-    _question.colorValue = colors[colorValueIndex];
+    _question.colorName = GamePlayColor.colorNames[colorNameIndex];
+    _question.colorValue = GamePlayColor.colors[colorValueIndex];
 
     return _question;
   }
 
   void startTimer() {
     _timer = new Timer.periodic(
-      Duration(milliseconds: 750),
+      Duration(milliseconds: countdownSpeed),
       (Timer timer) {
         print('[T]-------- Timer: $startTimerAt --------');
         if (startTimerAt < 1) {

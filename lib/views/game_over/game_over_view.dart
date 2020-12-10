@@ -3,14 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/enums/strooper_actions.dart';
+import 'package:strooper/constants/values.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/helpers/popup_background_painter.dart';
-import 'package:strooper/helpers/ui_helper.dart';
+import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
 import 'package:strooper/model/game_over.dart';
-import 'package:strooper/services/sounds/sound_methods.dart';
-import 'package:strooper/views/game_over/game_over_view_model.dart';
+
+import 'game_over_view_model.dart';
+import 'widgets/game_result_background_painter.dart';
 
 class GameOverView extends StatelessWidget {
   GameOverView({this.scoreDetails});
@@ -47,7 +48,7 @@ class GameOverView extends StatelessWidget {
                         width: double.infinity,
                         height: getHeight(context, divideBy: 2.1),
                         child: CustomPaint(
-                          painter: PopupBackgroundPainter(
+                          painter: GameResultBackgroundPainter(
                               backgroundColor: Color(0xffFFFAFA)),
                           child: Container(
                             padding: EdgeInsets.only(bottom: paddingMedium),
@@ -110,7 +111,7 @@ class GameOverView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           BounceAnimation(
-                            duration: 100,
+                            duration: gotoHomeButtonAnimationDuration,
                             onTap: () {
                               model.goBack();
                             },
@@ -121,7 +122,7 @@ class GameOverView extends StatelessWidget {
                           ),
                           SizedBox(width: 20),
                           BounceAnimation(
-                            duration: 100,
+                            duration: restartButtonAnimationDuration,
                             onTap: () {
                               model.restartGame();
                             },

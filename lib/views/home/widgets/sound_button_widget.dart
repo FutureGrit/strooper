@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:strooper/constants/values.dart';
+import 'package:strooper/utils/ui_helper.dart';
+
 import 'package:strooper/services/sounds/sound_methods.dart';
 
 class SoundButtonWidget extends StatefulWidget {
@@ -47,7 +50,7 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: animatedSwitcherDuration),
       switchInCurve: Curves.easeIn,
       switchOutCurve: Curves.easeOut,
       // TODO: Create method for repeated code for sound button
@@ -77,7 +80,7 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
           },
           child: SvgPicture.asset(
             imagePath,
-            width: MediaQuery.of(context).size.width / 6.5,
+            width: getWidth(context, divideBy: 6.5),
           ),
         ),
       );

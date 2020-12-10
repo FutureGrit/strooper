@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/play/question_view_model.dart';
-import 'package:strooper/play/widgets/answer_buttons_widgets.dart';
-import 'package:strooper/play/widgets/game_body_widget.dart';
-import 'package:strooper/play/widgets/new_score_widget.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
+import 'question_view_model.dart';
+import 'widgets/answer_buttons_widgets.dart';
+import 'widgets/game_body_widget.dart';
+import 'widgets/new_score_widget.dart';
 
 class PlayView extends StatelessWidget {
   @override

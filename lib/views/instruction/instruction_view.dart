@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:strooper/constants/app_colors.dart';
 
+import 'package:strooper/constants/app_colors.dart';
 import 'package:strooper/constants/shared_style.dart';
-import 'package:strooper/constants/ui_utils.dart';
+import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/dotted_border.dart';
-import 'package:strooper/helpers/ui_helper.dart';
-import 'package:strooper/home/home_view_model.dart';
+import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
 import 'package:strooper/services/sounds/sound_methods.dart';
 
 class InstructionView extends StatelessWidget {
@@ -38,7 +38,8 @@ class InstructionView extends StatelessWidget {
                 ),
                 horizontalSpacingMedium,
                 BounceAnimation(
-                    duration: 80,
+                    disableLongPress: true,
+                    duration: goBackButtonAnimationDuration,
                     onTap: () {
                       SoundMethods.playButtonSound(
                           action: StrooperActions.MENU_BUTTON);

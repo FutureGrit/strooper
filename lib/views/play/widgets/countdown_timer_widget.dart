@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_circular_text/circular_text.dart';
 import 'package:provider/provider.dart';
 
-import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/play/timer_view_model.dart';
-import 'package:strooper/play/widgets/timer_value_widget.dart';
+import 'package:strooper/utils/ui_utils.dart';
+
+import '../timer_view_model.dart';
+import 'timer_value_widget.dart';
 
 class CountdownTimerWidget extends StatelessWidget {
   @override

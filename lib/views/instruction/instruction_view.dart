@@ -38,7 +38,6 @@ class InstructionView extends StatelessWidget {
                 ),
                 horizontalSpacingMedium,
                 BounceAnimation(
-                    disableLongPress: true,
                     duration: goBackButtonAnimationDuration,
                     onTap: () {
                       SoundMethods.playButtonSound(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import 'package:strooper/constants/values.dart';
+import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/utils/ui_helper.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
@@ -29,14 +31,15 @@ class AppBarWidget extends StatelessWidget {
             horizontalSpacingMedium,
 
             // Instruction button widget
-            GestureDetector(
+            BounceAnimation(
+              duration: instructionButtonAnimationDuration,
               onTap: () {
                 Provider.of<HomeViewModel>(context, listen: false)
                     .showInstruction();
               },
-              child: SvgPicture.asset(
+              bounceWidget: SvgPicture.asset(
                 'images/info.svg',
-                width: getWidth(context, divideBy: 6.5),
+                width: getWidth(context, divideBy: 5.5),
               ),
             ),
           ],

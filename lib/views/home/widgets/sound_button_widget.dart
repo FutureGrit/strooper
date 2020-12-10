@@ -80,7 +80,7 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
           },
           child: SvgPicture.asset(
             imagePath,
-            width: getWidth(context, divideBy: 6.5),
+            width: getWidth(context, divideBy: 5.5),
           ),
         ),
       );

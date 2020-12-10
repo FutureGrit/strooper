@@ -1,6 +1,7 @@
 // ---- Home View ----
 const int startButtonAnimationDuration = 140;
 const int animatedSwitcherDuration = 200;
+const int instructionButtonAnimationDuration = 80;
 
 // ---- Instruction View ----
 const int goBackButtonAnimationDuration = 80;

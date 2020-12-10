@@ -3,11 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/ui_utils.dart';
-import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/one_tap_recognizer.dart';
+import 'package:strooper/helpers/ui_helper.dart';
 import 'package:strooper/play/question_view_model.dart';
-import 'package:strooper/services/sounds/sound_methods.dart';
 
 class AnswerButtonsWidget extends StatelessWidget {
   @override
@@ -44,13 +43,12 @@ class AnswerButtonsWidget extends StatelessWidget {
       disableLongPress: true,
       duration: 80,
       onTap: () {
-        SoundMethods.playButtonSound(action: StrooperActions.ANSWER_BUTTON);
         Provider.of<QuestionViewModel>(buildContext, listen: false)
             .checkAnswer(value);
       },
       bounceWidget: SvgPicture.asset(
         imagePath,
-        width: (MediaQuery.of(buildContext).size.width / 2.1) - paddingLarge,
+        width: getWidth(buildContext, divideBy: 2.1) - paddingLarge,
       ),
     );
   }

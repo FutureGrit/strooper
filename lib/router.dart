@@ -12,19 +12,30 @@ import 'package:strooper/views/instruction/instruction_view.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case routes.HomeRoute:
-      return MaterialPageRoute(builder: (context) => HomeView());
+      return SharedAxisPageRoute(
+        page: HomeView(),
+        transitionType: SharedAxisTransitionType.horizontal,
+      );
+      break;
     case routes.InstructionRoute:
-      return MaterialPageRoute(builder: (context) => InstructionView());
+      return SharedAxisPageRoute(
+        page: InstructionView(),
+        transitionType: SharedAxisTransitionType.horizontal,
+      );
+      break;
     case routes.PlayRoute:
-      // return SharedAxisPageRoute(
-      //     page: PlayView(), transitionType: SharedAxisTransitionType.scaled);
-      return MaterialPageRoute(builder: (context) => PlayView());
+      return SharedAxisPageRoute(
+        page: PlayView(),
+        transitionType: SharedAxisTransitionType.scaled,
+      );
+      break;
     case routes.GameOverRoute:
       GameOver scoreDetails = settings.arguments as GameOver;
       return SharedAxisPageRoute(
         page: GameOverView(scoreDetails: scoreDetails),
         transitionType: SharedAxisTransitionType.scaled,
       );
+      break;
     default:
       return _errorRoute();
   }

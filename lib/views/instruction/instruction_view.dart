@@ -5,10 +5,12 @@ import 'package:strooper/constants/app_colors.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/ui_utils.dart';
+import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/dotted_border.dart';
 import 'package:strooper/helpers/ui_helper.dart';
 import 'package:strooper/home/home_view_model.dart';
+import 'package:strooper/services/sounds/sound_methods.dart';
 
 class InstructionView extends StatelessWidget {
   @override
@@ -38,6 +40,8 @@ class InstructionView extends StatelessWidget {
                 BounceAnimation(
                     duration: 80,
                     onTap: () {
+                      SoundMethods.playButtonSound(
+                          action: StrooperActions.MENU_BUTTON);
                       Navigator.pop(context);
                     },
                     bounceWidget: SvgPicture.asset("images/back_button.svg")),

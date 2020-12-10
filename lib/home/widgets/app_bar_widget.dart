@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:strooper/constants/ui_utils.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/custom_page_route.dart';
+import 'package:strooper/helpers/ui_helper.dart';
 import 'package:strooper/home/home_view_model.dart';
 
 import 'package:strooper/home/widgets/high_score_widget.dart';
@@ -35,26 +36,12 @@ class AppBarWidget extends StatelessWidget {
             // Instruction button widget
             GestureDetector(
               onTap: () {
-                // TODO: set sound in view model
-                SoundMethods.playButtonSound(
-                    action: StrooperActions.INSTRUCTION_SHOW);
-                print('--- Navigating to Instruction View ----');
-
                 Provider.of<HomeViewModel>(context, listen: false)
                     .showInstruction();
-                //
-                // final route = SharedAxisPageRoute(
-                //     page: InstructionView(),
-                //     transitionType: SharedAxisTransitionType.horizontal);
-                // Navigator.of(context).push(route);
-                //     .push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => InstructionView()),
-                // );
               },
               child: SvgPicture.asset(
                 'images/info.svg',
-                width: MediaQuery.of(context).size.width / 6.5,
+                width: getWidth(context, divideBy: 6.5),
               ),
             ),
           ],

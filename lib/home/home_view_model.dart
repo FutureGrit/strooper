@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:strooper/locator.dart';
+import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/services/high_score_service.dart';
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/constants/route_paths.dart' as routes;
+import 'package:strooper/services/sounds/sound_methods.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();
@@ -18,19 +20,14 @@ class HomeViewModel extends ChangeNotifier {
   int get highScore => _highScoreService.highScore;
 
   void startGame() {
-    //Todo: Replace route string with const
+    SoundMethods.playButtonSound(action: StrooperActions.START_GAME);
     _navigationService.navigateTo(routes.PlayRoute);
-    print(
-        '******************************** OPEN PLAY SCREEN ******************');
+    print('*********** OPEN PLAY SCREEN **********');
   }
 
   void showInstruction() {
+    SoundMethods.playButtonSound(action: StrooperActions.MENU_BUTTON);
     _navigationService.navigateTo(routes.InstructionRoute);
-    print(
-        '******************************** OPEN Instruction SCREEN ******************');
-  }
-
-  void goBack() {
-    _navigationService.goBack();
+    print('********** OPEN Instruction SCREEN **********');
   }
 }

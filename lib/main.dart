@@ -9,7 +9,8 @@ import 'package:strooper/services/local_db/database_setup.dart';
 
 import 'package:strooper/services/navigation_service.dart';
 import 'package:strooper/router.dart' as router;
-import 'package:strooper/home/widgets/splash_widget.dart';
+import 'package:strooper/constants/route_paths.dart' as routes;
+import 'package:strooper/views/splash/splash_view.dart';
 
 void main() {
   setupLocator();
@@ -26,20 +27,7 @@ class Strooper extends StatelessWidget {
       theme: ThemeData(fontFamily: 'FredokaOne'),
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.generateRoute,
-      home: FutureBuilder(
-        future: DatabaseSetup.initialise(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError)
-              return Text(snapshot.error.toString());
-            else
-              return ChangeNotifierProvider<HomeViewModel>(
-                  create: (context) => HomeViewModel(), child: HomeView());
-          } else {
-            return SplashWidget();
-          }
-        },
-      ),
+      initialRoute: routes.SplashRoute,
     );
   }
 }

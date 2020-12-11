@@ -50,9 +50,6 @@ class DatabaseSetup {
         ExactAssetPicture(
             SvgPicture.svgStringDecoder, 'images/answer_wrong.svg'),
         null);
-    precachePicture(
-        ExactAssetPicture(SvgPicture.svgStringDecoder, 'images/timer_bg.svg'),
-        null);
 
     // ---- Game over screen images ----
     precachePicture(

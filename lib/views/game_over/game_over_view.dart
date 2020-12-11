@@ -43,10 +43,10 @@ class GameOverView extends StatelessWidget {
                     alignment: AlignmentDirectional.bottomCenter,
                     children: [
                       Container(
-                        margin:
-                            EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                         width: double.infinity,
                         height: getHeight(context, divideBy: 2.1),
+                        margin:
+                            EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                         child: CustomPaint(
                           painter: GameResultBackgroundPainter(
                               backgroundColor: Color(0xffFFFAFA)),
@@ -58,17 +58,10 @@ class GameOverView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        'New Highest Score',
-                                        style: TextStyle(
-                                            color: Colors.green[800],
-                                            fontSize: 28),
-                                      ),
-                                      Text(
-                                        '${scoreDetails.highScore}',
-                                        style: TextStyle(
-                                            color: Colors.green[800],
-                                            fontSize: 40),
+                                      ...getScoreWidget(
+                                        title: 'New Highest',
+                                        value: '${scoreDetails.highScore}',
+                                        color: Colors.green,
                                       ),
                                     ],
                                   )
@@ -77,39 +70,28 @@ class GameOverView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        'Your Score',
-                                        style: TextStyle(
-                                            color: Colors.red[800],
-                                            fontSize: 26),
+                                      ...getScoreWidget(
+                                        title: 'Your Score',
+                                        value: '${scoreDetails.newScore}',
+                                        color: Colors.red,
                                       ),
-                                      Text(
-                                        '${scoreDetails.newScore}',
-                                        style: TextStyle(
-                                            color: Colors.red[800],
-                                            fontSize: 36),
-                                      ),
-                                      SizedBox(height: 40),
-                                      Text(
-                                        'Highest Score',
-                                        style: TextStyle(
-                                            color: Colors.green[800],
-                                            fontSize: 16),
-                                      ),
-                                      Text(
-                                        scoreDetails.highScore.toString(),
-                                        style: TextStyle(
-                                            color: Colors.green[800],
-                                            fontSize: 32),
+                                      verticalSpacingNormal,
+                                      ...getScoreWidget(
+                                        title: 'Highest',
+                                        value: '${scoreDetails.highScore}',
+                                        color: Colors.green,
                                       )
                                     ],
                                   ),
                           ),
                         ),
                       ),
+
+                      // Menu Button [Bake to Home] and [Restart Game]
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          // Go back to [Home]
                           BounceAnimation(
                             duration: gotoHomeButtonAnimationDuration,
                             onTap: () {
@@ -120,7 +102,10 @@ class GameOverView extends StatelessWidget {
                               height: gameOverMenuButtonRadius * 2,
                             ),
                           ),
-                          SizedBox(width: 20),
+
+                          horizontalSpacingMedium,
+
+                          // Restart game
                           BounceAnimation(
                             duration: restartButtonAnimationDuration,
                             onTap: () {
@@ -142,5 +127,36 @@ class GameOverView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> getScoreWidget({
+    @required String title,
+    @required String value,
+    Color color = Colors.black,
+  }) {
+    List<Widget> list = List<Widget>();
+    list.add(
+      Text(
+        title,
+        style: gameOverScoreTitleTextStyle.copyWith(color: color),
+      ),
+    );
+    list.add(
+      Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.black, width: 2),
+        ),
+        child: FittedBox(
+          child: Text(
+            value,
+            style: gameOverScoreValueTextStyle,
+          ),
+        ),
+      ),
+    );
+    return list;
   }
 }

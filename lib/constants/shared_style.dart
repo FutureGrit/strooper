@@ -44,3 +44,9 @@ final exampleWidgetButtonDecoration = BoxDecoration(
   shape: BoxShape.rectangle,
   borderRadius: BorderRadius.circular(8),
 );
+
+// ---- Game Over Screen Style ----
+const gameOverScoreTitleTextStyle =
+    TextStyle(color: Colors.black, fontSize: 28);
+const gameOverScoreValueTextStyle =
+    TextStyle(color: Colors.white, fontSize: 36);

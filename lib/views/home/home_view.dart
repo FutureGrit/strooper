@@ -16,55 +16,62 @@ import 'widgets/cloud_widget.dart';
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => _onBackPressed(buildContext: context),
-      child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: appBackgroundDecoration,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AppBarWidget(),
-
-              // App title "STROOPER"
-              SvgPicture.asset(
-                'images/app_title.svg',
-                width: getWidth(context, divideBy: 1.3),
-              ),
-
-              // Start button
-              BounceAnimation(
-                duration: startButtonAnimationDuration,
-                bounceWidget: SvgPicture.asset(
-                  'images/start_button.svg',
-                  width: getWidth(context, divideBy: 2.2),
-                ),
-                onTap: () {
-                  Provider.of<HomeViewModel>(context, listen: false)
-                      .startGame();
-                },
-              ),
-
-              // Clouds and "@FutureGrit" label
-              Stack(
-                alignment: Alignment.bottomCenter,
+    print('[HO1]-------- HomeView Rebuilding --------');
+    return ChangeNotifierProvider<HomeViewModel>(
+      create: (context) => HomeViewModel(),
+      builder: (context, child) {
+        print('[HO*]-------- HomeView Rebuilding --------');
+        return WillPopScope(
+          onWillPop: () async => _onBackPressed(buildContext: context),
+          child: Scaffold(
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: appBackgroundDecoration,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CloudWidget(),
-                  Padding(
-                    padding: const EdgeInsets.all(paddingSmall),
-                    child: Text(
-                      '@FutureGrit',
-                      style: watermarkStyle,
+                  AppBarWidget(),
+
+                  // App title "STROOPER"
+                  SvgPicture.asset(
+                    'images/app_title.svg',
+                    width: getWidth(context, divideBy: 1.3),
+                  ),
+
+                  // Start button
+                  BounceAnimation(
+                    duration: startButtonAnimationDuration,
+                    bounceWidget: SvgPicture.asset(
+                      'images/start_button.svg',
+                      width: getWidth(context, divideBy: 2.2),
                     ),
-                  )
+                    onTap: () {
+                      Provider.of<HomeViewModel>(context, listen: false)
+                          .startGame();
+                    },
+                  ),
+
+                  // Clouds and "@FutureGrit" label
+                  Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      CloudWidget(),
+                      Padding(
+                        padding: const EdgeInsets.all(paddingSmall),
+                        child: Text(
+                          '@FutureGrit',
+                          style: watermarkStyle,
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

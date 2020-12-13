@@ -9,16 +9,9 @@ import 'package:strooper/views/game_over/game_over_view.dart';
 import 'package:strooper/views/home/home_view.dart';
 import 'package:strooper/views/instruction/instruction_view.dart';
 import 'package:strooper/views/play/play_view.dart';
-import 'package:strooper/views/splash/splash_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case routes.SplashRoute:
-      return SharedAxisPageRoute(
-        page: SplashView(),
-        transitionType: SharedAxisTransitionType.horizontal,
-      );
-      break;
     case routes.HomeRoute:
       return SharedAxisPageRoute(
         page: HomeView(),

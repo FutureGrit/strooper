@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:strooper/constants/route_paths.dart';
+import 'package:strooper/constants/route_paths.dart' as routes;
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/utils/game_play_colors.dart';
 import 'package:strooper/helpers/random_index.dart';
@@ -69,8 +69,11 @@ class PlayService {
   void gameOver() async {
     print('[8]-------- GAME OVER : $newScore--------');
     stopTimer();
-    _navigationService.popAndNavigateTo(GameOverRoute,
-        argument: await _highScoreService.checkScore(newScore));
+    _navigationService.navigateToRemoveUntil(
+      navigateTo: routes.GameOverRoute,
+      removeUntil: routes.HomeRoute,
+      argument: await _highScoreService.checkScore(newScore),
+    );
     newScore = 0;
   }
 

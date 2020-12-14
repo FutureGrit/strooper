@@ -11,7 +11,8 @@ class GameOverViewModel extends ChangeNotifier {
 
   void restartGame() {
     SoundMethods.playButtonSound(action: StrooperActions.START_GAME);
-    _navigationService.popAndNavigateTo(routes.PlayRoute);
+    _navigationService.navigateToRemoveUntil(
+        navigateTo: routes.PlayRoute, removeUntil: routes.HomeRoute);
     print('********** Restarted Game ***********');
   }
 

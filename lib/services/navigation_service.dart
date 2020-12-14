@@ -8,9 +8,13 @@ class NavigationService {
     return navigatorKey.currentState.pushNamed(routeName);
   }
 
-  Future<dynamic> popAndNavigateTo(String routeName, {dynamic argument}) {
-    return navigatorKey.currentState
-        .popAndPushNamed(routeName, arguments: argument);
+  Future<dynamic> navigateToRemoveUntil(
+      {@required String navigateTo,
+      @required String removeUntil,
+      dynamic argument}) {
+    return navigatorKey.currentState.pushNamedAndRemoveUntil(
+        navigateTo, ModalRoute.withName(removeUntil),
+        arguments: argument);
   }
 
   void goBack() {

@@ -14,28 +14,28 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case routes.HomeRoute:
       return SharedAxisPageRoute(
-        page: HomeView(),
-        transitionType: SharedAxisTransitionType.horizontal,
-      );
+          page: HomeView(),
+          transitionType: SharedAxisTransitionType.horizontal,
+          settings: settings);
       break;
     case routes.InstructionRoute:
       return SharedAxisPageRoute(
-        page: InstructionView(),
-        transitionType: SharedAxisTransitionType.horizontal,
-      );
+          page: InstructionView(),
+          transitionType: SharedAxisTransitionType.horizontal,
+          settings: settings);
       break;
     case routes.PlayRoute:
       return SharedAxisPageRoute(
-        page: PlayView(),
-        transitionType: SharedAxisTransitionType.scaled,
-      );
+          page: PlayView(),
+          transitionType: SharedAxisTransitionType.scaled,
+          settings: settings);
       break;
     case routes.GameOverRoute:
       GameOver scoreDetails = settings.arguments as GameOver;
       return SharedAxisPageRoute(
-        page: GameOverView(scoreDetails: scoreDetails),
-        transitionType: SharedAxisTransitionType.scaled,
-      );
+          page: GameOverView(scoreDetails: scoreDetails),
+          transitionType: SharedAxisTransitionType.scaled,
+          settings: settings);
       break;
     default:
       return _errorRoute();

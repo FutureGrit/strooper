@@ -2,8 +2,12 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 class SharedAxisPageRoute extends PageRouteBuilder {
-  SharedAxisPageRoute({Widget page, SharedAxisTransitionType transitionType})
+  SharedAxisPageRoute(
+      {Widget page,
+      SharedAxisTransitionType transitionType,
+      RouteSettings settings})
       : super(
+          settings: settings,
           pageBuilder: (
             BuildContext context,
             Animation primaryAnimation,

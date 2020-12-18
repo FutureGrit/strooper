@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
+import 'package:strooper/helpers/button_animation/animated_button_widget.dart';
 import 'package:strooper/utils/ui_helper.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
@@ -40,18 +41,34 @@ class HomeView extends StatelessWidget {
                   ),
 
                   // Start button
-                  BounceAnimation(
-                    duration: startButtonAnimationDuration,
-                    bounceWidget: SvgPicture.asset(
-                      'images/start_button.svg',
-                      width: getWidth(context, divideBy: 2.2),
-                    ),
-                    onTap: () {
-                      Provider.of<HomeViewModel>(context, listen: false)
-                          .startGame();
-                    },
-                  ),
+                  // BounceAnimation(
+                  //   duration: startButtonAnimationDuration,
+                  //   bounceWidget: SvgPicture.asset(
+                  //     'images/start_button.svg',
+                  //     width: getWidth(context, divideBy: 2.2),
+                  //   ),
+                  //   onTap: () {
+                  //     Provider.of<HomeViewModel>(context, listen: false)
+                  //         .startGame();
+                  //   },
+                  // ),
 
+                  //TODO: BUG:: on button tap screen will be navigated to
+                  // [PlayView] but just before navigating, user can tap again
+                  // on the button because their is small delay on executing
+                  // of onTap function in the [animationButtonWidget]. Due to
+                  // this [PlayView] will be opened again automatically when
+                  // user return to home.
+                  SizedBox(
+                    height: getHeight(context, divideBy: 7),
+                    width: getWidth(context, divideBy: 2.2),
+                    child: AnimatedButtonWidget(
+                      onTap: () {
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .startGame();
+                      },
+                    ),
+                  ),
                   // Clouds and "@FutureGrit" label
                   Stack(
                     alignment: Alignment.bottomCenter,

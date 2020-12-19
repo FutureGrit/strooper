@@ -56,7 +56,11 @@ class HomeView extends StatelessWidget {
                   Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
-                      CloudWidget(),
+                      Container(
+                        height: getHeight(context, divideBy: 4),
+                        width: getWidth(context),
+                        child: CloudWidget(),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(paddingSmall),
                         child: Text(

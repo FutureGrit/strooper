@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:strooper/constants/values.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/enums/game_images.dart';
+import 'package:strooper/utils/methods.dart';
 
 import 'package:strooper/services/sounds/sound_methods.dart';
 
@@ -58,18 +59,20 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
           ? soundButton(
               context: context,
               key: 'sound-on',
-              imagePath: 'images/sound-on.svg')
+              imageType: GameImages.SOUND_ON,
+            )
           : soundButton(
               context: context,
               key: 'sound-off',
-              imagePath: 'images/sound-off.svg'),
+              imageType: GameImages.SOUND_OFF,
+            ),
     );
   }
 
   Widget soundButton(
           {@required BuildContext context,
           @required String key,
-          @required String imagePath}) =>
+          @required GameImages imageType}) =>
       Container(
         key: Key(key),
         child: GestureDetector(
@@ -78,9 +81,9 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
               SoundMethods.updateSoundStatus();
             });
           },
-          child: SvgPicture.asset(
-            imagePath,
-            width: getWidth(context, divideBy: 5.5),
+          child: SvgPicture.memory(
+            Methods.getImageData(imageType: imageType),
+            width: Methods.getWidth(context, divideBy: 5.5),
           ),
         ),
       );

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:strooper/constants/values.dart';
+import 'package:strooper/enums/game_images.dart';
 
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/one_tap_recognizer.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import '../question_view_model.dart';
@@ -22,12 +23,12 @@ class AnswerButtonsWidget extends StatelessWidget {
           children: [
             _answerButtonType(
               value: false,
-              imagePath: 'images/answer_wrong.svg',
+              imageType: GameImages.ANSWER_WRONG,
               buildContext: context,
             ),
             _answerButtonType(
               value: true,
-              imagePath: 'images/answer_right.svg',
+              imageType: GameImages.ANSWER_RIGHT,
               buildContext: context,
             ),
           ],
@@ -38,7 +39,7 @@ class AnswerButtonsWidget extends StatelessWidget {
 
   Widget _answerButtonType({
     @required bool value,
-    @required String imagePath,
+    @required GameImages imageType,
     @required BuildContext buildContext,
   }) {
     return BounceAnimation(
@@ -48,9 +49,9 @@ class AnswerButtonsWidget extends StatelessWidget {
         Provider.of<QuestionViewModel>(buildContext, listen: false)
             .checkAnswer(value);
       },
-      bounceWidget: SvgPicture.asset(
-        imagePath,
-        width: getWidth(buildContext, divideBy: 2.1) - paddingLarge,
+      bounceWidget: SvgPicture.memory(
+        Methods.getImageData(imageType: imageType),
+        width: Methods.getWidth(buildContext, divideBy: 2.1) - paddingLarge,
       ),
     );
   }

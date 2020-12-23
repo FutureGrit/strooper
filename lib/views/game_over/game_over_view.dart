@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
+import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import 'package:strooper/model/game_over.dart';
@@ -33,9 +34,9 @@ class GameOverView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    "images/game_over.svg",
-                    width: getWidth(context) - paddingLarge * 2,
+                  SvgPicture.memory(
+                    Methods.getImageData(imageType: GameImages.GAME_OVER),
+                    width: Methods.getWidth(context) - paddingLarge * 2,
                   ),
                   verticalSpacingMedium,
                   Stack(
@@ -44,7 +45,7 @@ class GameOverView extends StatelessWidget {
                     children: [
                       Container(
                         width: double.infinity,
-                        height: getHeight(context, divideBy: 2.1),
+                        height: Methods.getHeight(context, divideBy: 2.1),
                         margin:
                             EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                         child: CustomPaint(
@@ -97,8 +98,9 @@ class GameOverView extends StatelessWidget {
                             onTap: () {
                               model.goBack();
                             },
-                            bounceWidget: SvgPicture.asset(
-                              "images/home_button.svg",
+                            bounceWidget: SvgPicture.memory(
+                              Methods.getImageData(
+                                  imageType: GameImages.GOTO_HOME),
                               height: gameOverMenuButtonRadius * 2,
                             ),
                           ),
@@ -111,8 +113,9 @@ class GameOverView extends StatelessWidget {
                             onTap: () {
                               model.restartGame();
                             },
-                            bounceWidget: SvgPicture.asset(
-                              "images/restart_button.svg",
+                            bounceWidget: SvgPicture.memory(
+                              Methods.getImageData(
+                                  imageType: GameImages.RESTART_GAME),
                               height: gameOverMenuButtonRadius * 2,
                             ),
                           ),

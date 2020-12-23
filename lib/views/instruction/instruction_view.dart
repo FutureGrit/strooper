@@ -4,10 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:strooper/constants/app_colors.dart';
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
+import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/enums/strooper_actions.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
 import 'package:strooper/helpers/dotted_border.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import 'package:strooper/services/sounds/sound_methods.dart';
@@ -27,7 +28,7 @@ class InstructionView extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                    height: getHeight(context, divideBy: 10.5),
+                    height: Methods.getHeight(context, divideBy: 10.5),
                     alignment: AlignmentDirectional.center,
                     decoration: howToPlayDecoration,
                     child: Text(
@@ -38,13 +39,15 @@ class InstructionView extends StatelessWidget {
                 ),
                 horizontalSpacingMedium,
                 BounceAnimation(
-                    duration: goBackButtonAnimationDuration,
-                    onTap: () {
-                      SoundMethods.playButtonSound(
-                          action: StrooperActions.MENU_BUTTON);
-                      Navigator.pop(context);
-                    },
-                    bounceWidget: SvgPicture.asset("images/back_button.svg")),
+                  duration: goBackButtonAnimationDuration,
+                  onTap: () {
+                    SoundMethods.playButtonSound(
+                        action: StrooperActions.MENU_BUTTON);
+                    Navigator.pop(context);
+                  },
+                  bounceWidget: SvgPicture.memory(
+                      Methods.getImageData(imageType: GameImages.BACK)),
+                ),
                 horizontalSpacingNormal,
               ],
             ),
@@ -126,7 +129,7 @@ class InstructionView extends StatelessWidget {
       child: Container(
         width: double.infinity,
         color: exampleWidgetColor,
-        height: getHeight(context, divideBy: 8),
+        height: Methods.getHeight(context, divideBy: 8),
         padding: EdgeInsets.all(paddingSmall),
         child: Row(
           children: [

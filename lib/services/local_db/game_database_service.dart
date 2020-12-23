@@ -1,34 +1,16 @@
 import 'dart:typed_data';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:rive/rive.dart';
-import 'package:strooper/model/animated_widget_box.dart';
 
-import 'package:strooper/services/local_db/db_keys.dart' as keys;
+import 'package:strooper/services/local_db/db_keys.dart' as DbKey;
+
+import 'package:strooper/enums/game_images.dart';
+import 'package:strooper/utils/load_images.dart';
 
 class GameDatabaseService {
-  Box _box;
-
-  Future init() async {
-    final appDocumentDirectory =
-        await path_provider.getApplicationDocumentsDirectory();
-    Hive.init(appDocumentDirectory.path);
-    //..registerAdapter(AnimatedWidgetBoxAdapter());
-
-    // Hive.registerAdapter(AnimatedWidgetBoxAdapter());
-
-    // Open box or local database
-    //_box = await Hive.openBox(keys.hiveBox);
-    _box = await _openDatabase(); //Hive.openBox(keys.hiveBox);
-
-    _soundStatus = _box.get(keys.soundStatus, defaultValue: false);
-    _highScore = _box.get(keys.highScore, defaultValue: 0);
-
-    await _loadAnimatedAssets();
-  }
+  Box _gameSettingsBox;
+  Box _gameImagesBox;
 
   bool _soundStatus;
   bool get soundStatus => _soundStatus;
@@ -36,56 +18,72 @@ class GameDatabaseService {
   int _highScore;
   int get highScore => _highScore;
 
-  Artboard _artboard;
-  Artboard get animationArtboard => _artboard;
+  Future init() async {
+    final appDocumentDirectory =
+        await path_provider.getApplicationDocumentsDirectory();
+    Hive.init(appDocumentDirectory.path);
+
+    /// [_loadSettingsData] will fetch and set previously stored [score] and
+    /// [sound enable status] to be ready to use by the UI
+    await _loadSettingsData();
+
+    /// [_loadImagesData] will load all images in the memory as [Uint8List]
+    /// ready to access.
+    await _loadImagesData();
+  }
+
+  Future<void> _loadSettingsData() async {
+    _gameSettingsBox = await Hive.openBox(DbKey.gameSettingsBox);
+
+    _soundStatus = _gameSettingsBox.get(DbKey.soundStatus, defaultValue: false);
+    _highScore = _gameSettingsBox.get(DbKey.highScore, defaultValue: 0);
+
+    _gameSettingsBox.close();
+  }
+
+  Future<void> _loadImagesData() async {
+    _gameImagesBox = await Hive.openBox(DbKey.gameImagesBox);
+
+    /// If statement will be executed on first time app runs or if app is crashed on
+    /// first run without storing all of the images data to the [gameImagesBox].
+    if (_gameImagesBox.isEmpty ||
+        (LoadImages.images.length != _gameImagesBox.length)) {
+      print('[Box]------ Adding images in box first time ------------ ');
+      for (var imageType in LoadImages.images.entries) {
+        /// If condition will be true only for the situation when all of the
+        /// images are not loaded at first time of app run due to unexpected
+        /// reasons, so skip all loaded images and load only missing images into
+        /// the [gameImagesBox].
+        if (_gameImagesBox.containsKey(imageType.key.index)) {
+          continue;
+        }
+
+        print('[Loading*]---------KEY: ${imageType.key} -------------');
+        ByteData imageBytes = await rootBundle.load(imageType.value);
+        await _gameImagesBox.put(
+            imageType.key.index, imageBytes.buffer.asUint8List());
+      }
+    }
+    print('[Loading]: ======= Completed =======');
+  }
 
   Future saveSoundStatus(bool status) async {
-    var _box = await _openDatabase();
+    _gameSettingsBox = await Hive.openBox(DbKey.gameSettingsBox);
 
-    await _box.put(keys.soundStatus, status);
+    await _gameSettingsBox.put(DbKey.soundStatus, status);
 
-    _closeDatabase();
+    _gameSettingsBox.close();
   }
 
   Future saveHighScore(int score) async {
-    var _box = await _openDatabase();
+    _gameSettingsBox = await Hive.openBox(DbKey.gameSettingsBox);
 
     _highScore = score;
-    await _box.put(keys.highScore, score);
+    await _gameSettingsBox.put(DbKey.highScore, score);
 
-    _closeDatabase();
+    _gameSettingsBox.close();
   }
 
-  Future _openDatabase() {
-    return Hive.openBox(keys.hiveBox);
-  }
-
-  void _closeDatabase() {
-    Hive.close();
-  }
-
-  Future _loadAnimatedAssets() async {
-    print('[X0]---------- Load Animated Assets ---------');
-    var _box = await _openDatabase();
-
-    Uint8List imageResponseData = _box.get('cloudArtboard', defaultValue: null);
-    ByteData imageBytes = imageResponseData.buffer.asByteData();
-    if (imageBytes == null) {
-      print('[X0X]---------- Loading Artboard Animated Assets ---------');
-      imageBytes = await rootBundle.load('assets/clouds.riv');
-      _box.put('cloudArtboard', imageBytes.buffer.asUint8List());
-    } else {}
-    final file = RiveFile();
-
-    Artboard _artboard;
-    if (file.import(imageBytes)) {
-      // Select an animation by its name
-      _artboard = file.mainArtboard
-        ..addController(SimpleAnimation('floating'))
-        ..addController(SimpleAnimation('twinkling'));
-    }
-    this._artboard = _artboard;
-
-    _closeDatabase();
-  }
+  Uint8List getImageData(GameImages imageType) =>
+      _gameImagesBox.get(imageType.index, defaultValue: "Image Data Not Found");
 }

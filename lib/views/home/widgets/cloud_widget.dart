@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 
-import '../home_view_model.dart';
+import 'package:strooper/enums/game_images.dart';
+import 'package:strooper/utils/methods.dart';
 
 class CloudWidget extends StatefulWidget {
   @override
@@ -11,31 +10,29 @@ class CloudWidget extends StatefulWidget {
 }
 
 class _CloudWidgetState extends State<CloudWidget> {
-  final riveFileName = 'assets/clouds.riv';
   Artboard _artboard;
 
   @override
   void initState() {
-    //_loadRiveFile();
-    setState(() {
-      _artboard =
-          Provider.of<HomeViewModel>(context, listen: false).getArtboard();
-    });
+    _loadRiveFile();
     super.initState();
   }
 
-  // void _loadRiveFile() async {
-  //   final bytes = await rootBundle.load(riveFileName);
-  //   final file = RiveFile();
-  //
-  //  if (file.import(bytes)) {
-  //   // Select an animation by its name
-  //   setState(() => _artboard = file.mainArtboard
-  //         ..addController(SimpleAnimation('floating'))
-  //         ..addController(SimpleAnimation('twinkling')),
-  //       );
-  //   }
-  // }
+  void _loadRiveFile() async {
+    var bytes =
+        Methods.getImageData(imageType: GameImages.CLOUDS).buffer.asByteData();
+
+    final file = RiveFile();
+
+    if (file.import(bytes)) {
+      // Select an animation by its name
+      setState(
+        () => _artboard = file.mainArtboard
+          ..addController(SimpleAnimation('floating'))
+          ..addController(SimpleAnimation('twinkling')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

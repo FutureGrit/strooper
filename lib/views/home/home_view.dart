@@ -5,8 +5,9 @@ import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
+import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import 'home_view_model.dart';
@@ -34,17 +35,16 @@ class HomeView extends StatelessWidget {
                   AppBarWidget(),
 
                   // App title "STROOPER"
-                  SvgPicture.asset(
-                    'images/app_title.svg',
-                    width: getWidth(context, divideBy: 1.3),
+                  SvgPicture.memory(
+                    Methods.getImageData(imageType: GameImages.APP_TITLE),
+                    width: Methods.getWidth(context, divideBy: 1.3),
                   ),
 
-                  // Start button
                   BounceAnimation(
                     duration: startButtonAnimationDuration,
-                    bounceWidget: SvgPicture.asset(
-                      'images/start_button.svg',
-                      width: getWidth(context, divideBy: 2),
+                    bounceWidget: SvgPicture.memory(
+                      Methods.getImageData(imageType: GameImages.START_BUTTON),
+                      width: Methods.getWidth(context, divideBy: 2),
                     ),
                     onTap: () {
                       Provider.of<HomeViewModel>(context, listen: false)
@@ -57,8 +57,9 @@ class HomeView extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     children: [
                       Container(
-                        height: getHeight(context, divideBy: 4),
-                        width: getWidth(context),
+                        // TODO: Check height of container using color
+                        height: Methods.getHeight(context, divideBy: 4),
+                        width: Methods.getWidth(context),
                         child: CloudWidget(),
                       ),
                       Padding(

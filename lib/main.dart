@@ -12,7 +12,7 @@ Future<void> main() async {
   setupLocator();
 
   /// [DatabaseSetup] will fetch the score saved in local database and load all
-  /// the required image assets.
+  /// the required image assets only for first time app is opened.
   await DatabaseSetup.initialise();
 
   runApp(Strooper());

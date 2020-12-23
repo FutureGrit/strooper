@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 
 import 'package:strooper/utils/ui_utils.dart';
 
@@ -34,7 +34,7 @@ class GameBodyWidget extends StatelessWidget {
                 )
               ]),
           width: double.infinity,
-          height: getHeight(context, divideBy: 4),
+          height: Methods.getHeight(context, divideBy: 4),
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: QuestionTextWidget(),

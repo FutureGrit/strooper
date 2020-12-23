@@ -3,8 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/values.dart';
+import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
-import 'package:strooper/utils/ui_helper.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import '../home_view_model.dart';
@@ -16,6 +17,7 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        height: Methods.getHeight(context, divideBy: 5),
         padding: EdgeInsets.symmetric(
             vertical: paddingLarge, horizontal: paddingNormal),
         child: Row(
@@ -37,10 +39,9 @@ class AppBarWidget extends StatelessWidget {
                 Provider.of<HomeViewModel>(context, listen: false)
                     .showInstruction();
               },
-              bounceWidget: SvgPicture.asset(
-                'images/info.svg',
-                width: getWidth(context, divideBy: 5.5),
-              ),
+              bounceWidget: SvgPicture.memory(
+                  Methods.getImageData(imageType: GameImages.INSTRUCTION),
+                  width: Methods.getWidth(context, divideBy: 5.5)),
             ),
           ],
         ),

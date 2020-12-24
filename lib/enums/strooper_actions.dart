@@ -2,12 +2,4 @@ enum StrooperActions {
   START_GAME,
   ANSWER_BUTTON,
   MENU_BUTTON,
-
-  // SOUND_ON,
-  // SOUND_OFF,
-  // INSTRUCTION_SHOW,
-  // ANSWER_RIGHT,
-  // ANSWER_WRONG,
-  // GOTO_HOME,
-  // RESTART_GAME
 }

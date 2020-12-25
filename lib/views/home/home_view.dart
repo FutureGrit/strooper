@@ -7,6 +7,7 @@ import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
+import 'package:strooper/helpers/one_tap_recognizer.dart';
 import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
@@ -25,57 +26,59 @@ class HomeView extends StatelessWidget {
         return WillPopScope(
           onWillPop: () async => _onBackPressed(buildContext: context),
           child: Scaffold(
-            body: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: appBackgroundDecoration,
-              child: Column(
-                children: [
-                  AppBarWidget(),
+            body: OneTapRecognizerWidget(
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: appBackgroundDecoration,
+                child: Column(
+                  children: [
+                    AppBarWidget(),
 
-                  // App title "STROOPER" image
-                  Expanded(
-                    child: SvgPicture.memory(
-                      Methods.getImageData(imageType: GameImages.APP_TITLE),
-                      width: Methods.getWidth(context, divideBy: 1.3),
-                    ),
-                  ),
-
-                  // Start game button
-                  Expanded(
-                    child: BounceAnimation(
-                      duration: startButtonAnimationDuration,
-                      bounceWidget: SvgPicture.memory(
-                        Methods.getImageData(
-                            imageType: GameImages.START_BUTTON),
-                        width: Methods.getWidth(context, divideBy: 2),
+                    // App title "STROOPER" image
+                    Expanded(
+                      child: SvgPicture.memory(
+                        Methods.getImageData(imageType: GameImages.APP_TITLE),
+                        width: Methods.getWidth(context, divideBy: 1.3),
                       ),
-                      onTap: () {
-                        Provider.of<HomeViewModel>(context, listen: false)
-                            .startGame();
-                      },
                     ),
-                  ),
 
-                  // Clouds and "@FutureGrit" label
-                  Expanded(
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        // Animated clouds
-                        CloudWidget(),
-
-                        // Futuregrit label
-                        SafeArea(
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: paddingSmall),
-                            child: Text('@FutureGrit', style: watermarkStyle),
-                          ),
-                        )
-                      ],
+                    // Start game button
+                    Expanded(
+                      child: BounceAnimation(
+                        duration: startButtonAnimationDuration,
+                        bounceWidget: SvgPicture.memory(
+                          Methods.getImageData(
+                              imageType: GameImages.START_BUTTON),
+                          width: Methods.getWidth(context, divideBy: 2),
+                        ),
+                        onTap: () {
+                          Provider.of<HomeViewModel>(context, listen: false)
+                              .startGame();
+                        },
+                      ),
                     ),
-                  ),
-                ],
+
+                    // Clouds and "@FutureGrit" label
+                    Expanded(
+                      child: Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          // Animated clouds
+                          CloudWidget(),
+
+                          // Futuregrit label
+                          SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.only(bottom: paddingSmall),
+                              child: Text('@FutureGrit', style: watermarkStyle),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

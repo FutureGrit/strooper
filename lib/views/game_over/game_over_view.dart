@@ -6,6 +6,7 @@ import 'package:strooper/constants/shared_style.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
+import 'package:strooper/helpers/one_tap_recognizer.dart';
 import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
@@ -26,104 +27,108 @@ class GameOverView extends StatelessWidget {
         create: (context) => GameOverViewModel(),
         child: Consumer<GameOverViewModel>(
           builder: (context, model, child) {
-            return Container(
-              padding: EdgeInsets.symmetric(
-                  vertical: paddingMedium, horizontal: paddingLarge),
-              alignment: AlignmentDirectional.center,
-              decoration: appBackgroundDecoration,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.memory(
-                    Methods.getImageData(imageType: GameImages.GAME_OVER),
-                    width: Methods.getWidth(context) - paddingLarge * 2,
-                  ),
-                  verticalSpacingMedium,
-                  Stack(
-                    overflow: Overflow.visible,
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: Methods.getHeight(context, divideBy: 2.1),
-                        margin:
-                            EdgeInsets.only(bottom: gameOverMenuButtonRadius),
-                        child: CustomPaint(
-                          painter: GameResultBackgroundPainter(
-                              backgroundColor: Color(0xffFFFAFA)),
-                          child: Container(
-                            padding: EdgeInsets.only(bottom: paddingMedium),
-                            child: scoreDetails.isHighest
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ...getScoreWidget(
-                                        title: 'New Highest',
-                                        value: '${scoreDetails.highScore}',
-                                        color: Colors.green,
-                                      ),
-                                    ],
-                                  )
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ...getScoreWidget(
-                                        title: 'Your Score',
-                                        value: '${scoreDetails.newScore}',
-                                        color: Colors.red,
-                                      ),
-                                      verticalSpacingNormal,
-                                      ...getScoreWidget(
-                                        title: 'Highest',
-                                        value: '${scoreDetails.highScore}',
-                                        color: Colors.green,
-                                      )
-                                    ],
-                                  ),
+            return OneTapRecognizerWidget(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: paddingMedium, horizontal: paddingLarge),
+                alignment: AlignmentDirectional.center,
+                decoration: appBackgroundDecoration,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.memory(
+                      Methods.getImageData(imageType: GameImages.GAME_OVER),
+                      width: Methods.getWidth(context) - paddingLarge * 2,
+                    ),
+                    verticalSpacingMedium,
+                    Stack(
+                      overflow: Overflow.visible,
+                      alignment: AlignmentDirectional.bottomCenter,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: Methods.getHeight(context, divideBy: 2.1),
+                          margin:
+                              EdgeInsets.only(bottom: gameOverMenuButtonRadius),
+                          child: CustomPaint(
+                            painter: GameResultBackgroundPainter(
+                                backgroundColor: Color(0xffFFFAFA)),
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: paddingMedium),
+                              child: scoreDetails.isHighest
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ...getScoreWidget(
+                                          title: 'New Highest',
+                                          value: '${scoreDetails.highScore}',
+                                          color: Colors.green,
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ...getScoreWidget(
+                                          title: 'Your Score',
+                                          value: '${scoreDetails.newScore}',
+                                          color: Colors.red,
+                                        ),
+                                        verticalSpacingNormal,
+                                        ...getScoreWidget(
+                                          title: 'Highest',
+                                          value: '${scoreDetails.highScore}',
+                                          color: Colors.green,
+                                        )
+                                      ],
+                                    ),
+                            ),
                           ),
                         ),
-                      ),
 
-                      // Menu Button [Bake to Home] and [Restart Game]
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Go back to [Home]
-                          BounceAnimation(
-                            duration: gotoHomeButtonAnimationDuration,
-                            onTap: () {
-                              model.goBack();
-                            },
-                            bounceWidget: SvgPicture.memory(
-                              Methods.getImageData(
-                                  imageType: GameImages.GOTO_HOME),
-                              height: gameOverMenuButtonRadius * 2,
+                        // Menu Button [Bake to Home] and [Restart Game]
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Go back to [Home]
+                            BounceAnimation(
+                              duration: gotoHomeButtonAnimationDuration,
+                              onTap: () {
+                                model.goBack();
+                              },
+                              bounceWidget: SvgPicture.memory(
+                                Methods.getImageData(
+                                    imageType: GameImages.GOTO_HOME),
+                                height: gameOverMenuButtonRadius * 2,
+                              ),
                             ),
-                          ),
 
-                          horizontalSpacingMedium,
+                            horizontalSpacingMedium,
 
-                          // Restart game
-                          BounceAnimation(
-                            duration: restartButtonAnimationDuration,
-                            onTap: () {
-                              model.restartGame();
-                            },
-                            bounceWidget: SvgPicture.memory(
-                              Methods.getImageData(
-                                  imageType: GameImages.RESTART_GAME),
-                              height: gameOverMenuButtonRadius * 2,
+                            // Restart game
+                            BounceAnimation(
+                              duration: restartButtonAnimationDuration,
+                              onTap: () {
+                                model.restartGame();
+                              },
+                              bounceWidget: SvgPicture.memory(
+                                Methods.getImageData(
+                                    imageType: GameImages.RESTART_GAME),
+                                height: gameOverMenuButtonRadius * 2,
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             );
           },

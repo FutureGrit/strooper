@@ -30,46 +30,50 @@ class HomeView extends StatelessWidget {
               height: double.infinity,
               decoration: appBackgroundDecoration,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppBarWidget(),
 
-                  // App title "STROOPER"
-                  SvgPicture.memory(
-                    Methods.getImageData(imageType: GameImages.APP_TITLE),
-                    width: Methods.getWidth(context, divideBy: 1.3),
+                  // App title "STROOPER" image
+                  Expanded(
+                    child: SvgPicture.memory(
+                      Methods.getImageData(imageType: GameImages.APP_TITLE),
+                      width: Methods.getWidth(context, divideBy: 1.3),
+                    ),
                   ),
 
-                  BounceAnimation(
-                    duration: startButtonAnimationDuration,
-                    bounceWidget: SvgPicture.memory(
-                      Methods.getImageData(imageType: GameImages.START_BUTTON),
-                      width: Methods.getWidth(context, divideBy: 2),
+                  // Start game button
+                  Expanded(
+                    child: BounceAnimation(
+                      duration: startButtonAnimationDuration,
+                      bounceWidget: SvgPicture.memory(
+                        Methods.getImageData(
+                            imageType: GameImages.START_BUTTON),
+                        width: Methods.getWidth(context, divideBy: 2),
+                      ),
+                      onTap: () {
+                        Provider.of<HomeViewModel>(context, listen: false)
+                            .startGame();
+                      },
                     ),
-                    onTap: () {
-                      Provider.of<HomeViewModel>(context, listen: false)
-                          .startGame();
-                    },
                   ),
 
                   // Clouds and "@FutureGrit" label
-                  Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      Container(
-                        // TODO: Check height of container using color
-                        height: Methods.getHeight(context, divideBy: 4),
-                        width: Methods.getWidth(context),
-                        child: CloudWidget(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(paddingSmall),
-                        child: Text(
-                          '@FutureGrit',
-                          style: watermarkStyle,
-                        ),
-                      )
-                    ],
+                  Expanded(
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        // Animated clouds
+                        CloudWidget(),
+
+                        // Futuregrit label
+                        SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: paddingSmall),
+                            child: Text('@FutureGrit', style: watermarkStyle),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

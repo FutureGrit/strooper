@@ -22,13 +22,15 @@ class PlayView extends StatelessWidget {
           decoration: appBackgroundDecoration,
           child: ChangeNotifierProvider(
             create: (context) => QuestionViewModel(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                NewScoreWidget(),
-                GameBodyWidget(),
-                AnswerButtonsWidget()
-              ],
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  NewScoreWidget(),
+                  GameBodyWidget(),
+                  AnswerButtonsWidget()
+                ],
+              ),
             ),
           ),
         ),

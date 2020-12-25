@@ -18,98 +18,102 @@ class InstructionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: paddingLarge),
-        alignment: AlignmentDirectional.center,
+        padding: EdgeInsets.only(top: paddingMedium),
         decoration: appBackgroundDecoration,
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
+        child: SafeArea(
+          child: Column(
+            children: [
+              // Title bar: How to play?
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Container(
+                      height: Methods.getHeight(context, divideBy: 11),
+                      alignment: AlignmentDirectional.center,
+                      decoration: howToPlayDecoration,
+                      child: Text("How to play?", style: howToPlayTextStyle),
+                    ),
+                  ),
+                  horizontalSpacingMedium,
+                  BounceAnimation(
+                    duration: goBackButtonAnimationDuration,
+                    onTap: () {
+                      SoundMethods.playButtonSound(
+                          action: StrooperActions.MENU_BUTTON);
+                      Navigator.pop(context);
+                    },
+                    bounceWidget: SvgPicture.memory(
+                      Methods.getImageData(imageType: GameImages.BACK),
+                      width: Methods.getWidth(context, divideBy: 5.5),
+                    ),
+                  ),
+                  horizontalSpacingNormal,
+                ],
+              ),
+
+              verticalSpacingMedium,
+
+              // Detail instruction text
+              Expanded(
+                child: SingleChildScrollView(
                   child: Container(
-                    height: Methods.getHeight(context, divideBy: 10.5),
-                    alignment: AlignmentDirectional.center,
-                    decoration: howToPlayDecoration,
-                    child: Text(
-                      "How to play?",
-                      style: howToPlayTextStyle,
+                    margin: EdgeInsets.only(
+                        left: paddingNormal,
+                        bottom: paddingLarge,
+                        right: paddingNormal),
+                    child: Column(
+                      children: [
+                        Text(
+                          "You will be presented with a word (name of a color) "
+                          "and this word will be displayed using a color.",
+                          style: detailTextStyle,
+                          textAlign: TextAlign.justify,
+                        ),
+                        verticalSpacingExtraLarge,
+                        exampleWidget(
+                          context,
+                          word: "RED",
+                          color: Colors.green,
+                          description: "- Word: Red\n- Color: Green",
+                          iconPath: "images/wrong_icon.svg",
+                        ),
+                        verticalSpacingNormal,
+                        Text(
+                          "As the word (red) and its color (green) do not match "
+                          "then tap on the [wrong] button.",
+                          style: detailTextStyle,
+                          textAlign: TextAlign.justify,
+                        ),
+                        verticalSpacingExtraLarge,
+                        exampleWidget(
+                          context,
+                          word: "RED",
+                          color: Colors.red,
+                          description: "- Word: Red\n- Color: Red",
+                          iconPath: "images/right_icon.svg",
+                        ),
+                        verticalSpacingNormal,
+                        Text(
+                          "As the word (red) and its color (red) does match then "
+                          "tap on the [correct] button.",
+                          style: detailTextStyle,
+                          textAlign: TextAlign.justify,
+                        ),
+                        verticalSpacingMedium,
+                        Text(
+                          "Please make sure to answer the question before the "
+                          "countdown timer is over.",
+                          style: detailTextStyle,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                horizontalSpacingMedium,
-                BounceAnimation(
-                  duration: goBackButtonAnimationDuration,
-                  onTap: () {
-                    SoundMethods.playButtonSound(
-                        action: StrooperActions.MENU_BUTTON);
-                    Navigator.pop(context);
-                  },
-                  bounceWidget: SvgPicture.memory(
-                      Methods.getImageData(imageType: GameImages.BACK)),
-                ),
-                horizontalSpacingNormal,
-              ],
-            ),
-            verticalSpacingMedium,
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: EdgeInsets.only(
-                      left: paddingNormal,
-                      bottom: paddingLarge,
-                      right: paddingNormal),
-                  child: Column(
-                    children: [
-                      Text(
-                        "You will be presented with a word (name of a color) "
-                        "and this word will be displayed using a color.",
-                        style: detailTextStyle,
-                        textAlign: TextAlign.justify,
-                      ),
-                      verticalSpacingExtraLarge,
-                      exampleWidget(
-                        context,
-                        word: "RED",
-                        color: Colors.green,
-                        description: "- Word: Red\n- Color: Green",
-                        iconPath: "images/wrong_icon.svg",
-                      ),
-                      verticalSpacingNormal,
-                      Text(
-                        "As the word (red) and its color (green) do not match "
-                        "then tap on the [wrong] button.",
-                        style: detailTextStyle,
-                        textAlign: TextAlign.justify,
-                      ),
-                      verticalSpacingExtraLarge,
-                      exampleWidget(
-                        context,
-                        word: "RED",
-                        color: Colors.red,
-                        description: "- Word: Red\n- Color: Red",
-                        iconPath: "images/right_icon.svg",
-                      ),
-                      verticalSpacingNormal,
-                      Text(
-                        "As the word (red) and its color (red) does match then "
-                        "tap on the [correct] button.",
-                        style: detailTextStyle,
-                        textAlign: TextAlign.justify,
-                      ),
-                      verticalSpacingMedium,
-                      Text(
-                        "Please make sure to answer the question before the "
-                        "countdown timer is over.",
-                        style: detailTextStyle,
-                        textAlign: TextAlign.justify,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

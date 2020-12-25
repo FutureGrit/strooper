@@ -37,7 +37,7 @@ class _CloudWidgetState extends State<CloudWidget> {
   @override
   Widget build(BuildContext context) {
     return _artboard != null
-        ? Rive(artboard: _artboard, alignment: Alignment.center)
+        ? Rive(artboard: _artboard, alignment: Alignment.bottomCenter)
         : Container();
   }
 }

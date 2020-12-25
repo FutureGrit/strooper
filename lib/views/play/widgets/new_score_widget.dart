@@ -11,21 +11,16 @@ class NewScoreWidget extends StatelessWidget {
     return Consumer<QuestionViewModel>(
       builder: (context, model, child) {
         debugPrint("[2]-------- NewScoreWidget Rebuilding --------");
-        return SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Score',
-                style: highScoreTextStyle,
-              ),
-              Text(
-                model.score.toString(),
-                //TODO: set style const
-                style: highScoreTextStyle.copyWith(fontSize: 36),
-              )
-            ],
-          ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Score', style: highScoreTextStyle),
+            Text(
+              model.score.toString(),
+              //TODO: set style const
+              style: highScoreTextStyle.copyWith(fontSize: 36),
+            )
+          ],
         );
       },
     );

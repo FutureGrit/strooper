@@ -17,9 +17,8 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: Methods.getHeight(context, divideBy: 5),
         padding: EdgeInsets.symmetric(
-            vertical: paddingLarge, horizontal: paddingNormal),
+            vertical: paddingMedium, horizontal: paddingNormal),
         child: Row(
           children: [
             // High Score widget

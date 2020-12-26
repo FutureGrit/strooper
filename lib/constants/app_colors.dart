@@ -13,3 +13,7 @@ const watermarkColor = Colors.black;
 // ---- Example Widget Background Color ----
 const exampleWidgetColor = Color(0x28ffffff);
 const dottedBorderColor = Colors.white;
+
+// ---- Game Over Result Screen Color ----
+const resultBackgroundColor = Color(0xffFFFAFA);
+const resultBackgroundBorderColor = Color(0xffeab443);

@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 
+import 'package:strooper/constants/app_colors.dart';
+
 class GameResultBackgroundPainter extends CustomPainter {
-  GameResultBackgroundPainter({this.backgroundColor = Colors.white});
+  GameResultBackgroundPainter(
+      {this.backgroundColor = resultBackgroundColor,
+      this.borderColor = resultBackgroundBorderColor});
 
   final Color backgroundColor;
+  final Color borderColor;
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = new Paint()
+    Paint paintBackground = new Paint()
       ..color = backgroundColor
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 2;
+      ..style = PaintingStyle.fill;
+    canvas.drawPath(getPath(size), paintBackground);
 
+    Paint paintBorder = new Paint()
+      ..color = borderColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 7;
+    canvas.drawPath(getPath(size), paintBorder);
+  }
+
+  Path getPath(Size size) {
     Path path = Path();
     path.moveTo(size.width * 0.09, size.height * 0.10);
     path.quadraticBezierTo(size.width * -0.12, size.height * 0.50,
@@ -31,7 +44,8 @@ class GameResultBackgroundPainter extends CustomPainter {
     path.quadraticBezierTo(size.width * 0.11, size.height * 0.06,
         size.width * 0.09, size.height * 0.10);
     path.close();
-    canvas.drawPath(path, paint);
+
+    return path;
   }
 
   @override

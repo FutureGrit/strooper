@@ -51,8 +51,7 @@ class GameOverView extends StatelessWidget {
                           margin:
                               EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                           child: CustomPaint(
-                            painter: GameResultBackgroundPainter(
-                                backgroundColor: Color(0xffFFFAFA)),
+                            painter: GameResultBackgroundPainter(),
                             child: Container(
                               padding: EdgeInsets.only(bottom: paddingMedium),
                               child: scoreDetails.isHighest

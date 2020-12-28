@@ -27,16 +27,20 @@ class PlayService {
 
   Question get question => _nextQuestion();
 
+  int _range = GamePlayColor.colors.length - 1;
   Question _nextQuestion() {
-    int colorNameIndex = Random().randomIndex();
+    int colorNameIndex = Random().nextInt(_range);
     int colorValueIndex;
 
     _question.answer = Random().nextBool();
 
     if (_question.answer) {
+      /// if answer is true then word and it's color must be the same
       colorValueIndex = colorNameIndex;
     } else {
-      colorValueIndex = Random().randomIndex(exclude: colorNameIndex);
+      /// Get different color for the word
+      colorValueIndex =
+          Random().randomIndex(range: _range, exclude: colorNameIndex);
     }
 
     _question.colorName = GamePlayColor.colorNames[colorNameIndex];

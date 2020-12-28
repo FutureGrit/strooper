@@ -14,8 +14,6 @@ class SoundButtonWidget extends StatefulWidget {
 
 class _SoundButtonWidgetState extends State<SoundButtonWidget>
     with WidgetsBindingObserver {
-  // TODO: Move soundEnabled variable to service "strooper_preference.dart"
-
   @override
   void initState() {
     super.initState();
@@ -54,7 +52,6 @@ class _SoundButtonWidgetState extends State<SoundButtonWidget>
       duration: const Duration(milliseconds: animatedSwitcherDuration),
       switchInCurve: Curves.easeIn,
       switchOutCurve: Curves.easeOut,
-      // TODO: Create method for repeated code for sound button
       child: SoundMethods.soundStatus
           ? soundButton(
               context: context,

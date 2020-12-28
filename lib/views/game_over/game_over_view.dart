@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:strooper/constants/app_colors.dart';
 
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/strings.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
@@ -21,7 +23,6 @@ class GameOverView extends StatelessWidget {
   final GameOver scoreDetails;
   @override
   Widget build(BuildContext context) {
-    debugPrint('[10]-------- GameOverView Rebuilding --------');
     return Scaffold(
       body: ChangeNotifierProvider<GameOverViewModel>(
         create: (context) => GameOverViewModel(),
@@ -53,7 +54,11 @@ class GameOverView extends StatelessWidget {
                           child: CustomPaint(
                             painter: GameResultBackgroundPainter(),
                             child: Container(
-                              padding: EdgeInsets.only(bottom: paddingMedium),
+                              padding: EdgeInsets.fromLTRB(
+                                  paddingMedium,
+                                  paddingMedium,
+                                  paddingMedium,
+                                  gameOverMenuButtonRadius),
                               child: scoreDetails.isHighest
                                   ? Column(
                                       mainAxisAlignment:
@@ -62,9 +67,9 @@ class GameOverView extends StatelessWidget {
                                           CrossAxisAlignment.center,
                                       children: [
                                         ...getScoreWidget(
-                                          title: 'New Highest',
+                                          title: newHighestScore,
                                           value: '${scoreDetails.highScore}',
-                                          color: Colors.green,
+                                          color: newHighestScoreTextColor,
                                         ),
                                       ],
                                     )
@@ -75,15 +80,15 @@ class GameOverView extends StatelessWidget {
                                           CrossAxisAlignment.center,
                                       children: [
                                         ...getScoreWidget(
-                                          title: 'Your Score',
+                                          title: yourScore,
                                           value: '${scoreDetails.newScore}',
-                                          color: Colors.red,
+                                          color: yourScoreTextColor,
                                         ),
                                         verticalSpacingNormal,
                                         ...getScoreWidget(
-                                          title: 'Highest',
+                                          title: highest,
                                           value: '${scoreDetails.highScore}',
-                                          color: Colors.green,
+                                          color: newHighestScoreTextColor,
                                         )
                                       ],
                                     ),
@@ -146,6 +151,9 @@ class GameOverView extends StatelessWidget {
       Text(
         title,
         style: gameOverScoreTitleTextStyle.copyWith(color: color),
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
       ),
     );
     list.add(
@@ -160,6 +168,9 @@ class GameOverView extends StatelessWidget {
           child: Text(
             value,
             style: gameOverScoreValueTextStyle,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
         ),
       ),

@@ -6,7 +6,6 @@ import '../question_view_model.dart';
 class QuestionTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint('[4]-------- QuestionText Rebuilding --------');
     return Text(
       Provider.of<QuestionViewModel>(context, listen: true)
           .question

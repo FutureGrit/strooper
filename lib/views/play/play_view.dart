@@ -12,7 +12,6 @@ import 'widgets/new_score_widget.dart';
 class PlayView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('[1]-------- PlayView Rebuilding --------');
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

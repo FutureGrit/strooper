@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_circular_text/circular_text.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_circular_text/circular_text.dart';
 
+import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/strings.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import '../timer_view_model.dart';
@@ -10,7 +12,6 @@ import 'timer_value_widget.dart';
 class CountdownTimerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('[5]-------- CountdownTimerWidget Rebuilding --------');
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -20,9 +21,8 @@ class CountdownTimerWidget extends StatelessWidget {
           children: [
             TextItem(
               text: Text(
-                "Timer".toUpperCase(),
-                style: TextStyle(
-                    fontSize: 9, color: Colors.white, fontFamily: "FredokaOne"),
+                timer.toUpperCase(),
+                style: timerTextStyle,
               ),
               direction: CircularTextDirection.anticlockwise,
               startAngleAlignment: StartAngleAlignment.center,

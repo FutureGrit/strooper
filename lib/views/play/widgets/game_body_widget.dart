@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:strooper/utils/methods.dart';
 
+import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/utils/methods.dart';
 import 'package:strooper/utils/ui_utils.dart';
 
 import 'countdown_timer_widget.dart';
@@ -9,7 +10,6 @@ import 'question_text_widget.dart';
 class GameBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint('[3]-------- GameBodyWidget Rebuilding --------');
     return Stack(
       overflow: Overflow.visible,
       alignment: AlignmentDirectional.bottomCenter,
@@ -22,17 +22,7 @@ class GameBodyWidget extends StatelessWidget {
             right: paddingNormal,
             bottom: countdownWidgetRadius - paddingNormal,
           ),
-          decoration: BoxDecoration(
-              color: Colors.grey[200],
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 10.0,
-                  offset: const Offset(0.0, 10.0),
-                )
-              ]),
+          decoration: questionBoardBoxDecoration,
           width: double.infinity,
           height: Methods.getHeight(context, divideBy: 4),
           child: FittedBox(

@@ -45,6 +45,23 @@ final exampleWidgetButtonDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(8),
 );
 
+//--------- Play Screen Styles---------
+const newScoreTextStyle = TextStyle(color: highScoreColor, fontSize: 36);
+final questionBoardBoxDecoration = BoxDecoration(
+    color: Colors.grey[200],
+    shape: BoxShape.rectangle,
+    borderRadius: BorderRadius.circular(16),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black26,
+        blurRadius: 10.0,
+        offset: const Offset(0.0, 10.0),
+      )
+    ]);
+const timerTextStyle =
+    TextStyle(fontSize: 9, color: Colors.white, fontFamily: "FredokaOne");
+const timerValueTextStyle = TextStyle(fontSize: 26, color: Colors.white);
+
 // ---- Game Over Screen Style ----
 const gameOverScoreTitleTextStyle =
     TextStyle(color: Colors.black, fontSize: 28);

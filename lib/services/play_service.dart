@@ -53,7 +53,6 @@ class PlayService {
     _timer = new Timer.periodic(
       Duration(milliseconds: countdownSpeed),
       (Timer timer) {
-        print('[T]-------- Timer: $startTimerAt --------');
         if (startTimerAt < 1) {
           gameOver();
         } else {
@@ -71,7 +70,6 @@ class PlayService {
   }
 
   void gameOver() async {
-    print('[8]-------- GAME OVER : $newScore--------');
     stopTimer();
     _navigationService.navigateToRemoveUntil(
       navigateTo: routes.GameOverRoute,
@@ -84,7 +82,6 @@ class PlayService {
   /// [quitGame] will be called if game is closed abruptly. In this situation
   /// check for high score and [saveScore] method won't be called.
   void quitGame() {
-    print('[9]-------- QuitGame Called --------');
     stopTimer();
     newScore = 0;
   }

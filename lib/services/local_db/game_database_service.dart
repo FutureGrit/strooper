@@ -48,7 +48,6 @@ class GameDatabaseService {
     /// first run without storing all of the images data to the [gameImagesBox].
     if (_gameImagesBox.isEmpty ||
         (LoadImages.images.length != _gameImagesBox.length)) {
-      print('[Box]------ Adding images in box first time ------------ ');
       for (var imageType in LoadImages.images.entries) {
         /// If condition will be true only for the situation when all of the
         /// images are not loaded at first time of app run due to unexpected
@@ -58,13 +57,11 @@ class GameDatabaseService {
           continue;
         }
 
-        print('[Loading*]---------KEY: ${imageType.key} -------------');
         ByteData imageBytes = await rootBundle.load(imageType.value);
         await _gameImagesBox.put(
             imageType.key.index, imageBytes.buffer.asUint8List());
       }
     }
-    print('[Loading]: ======= Completed =======');
   }
 
   Future saveSoundStatus(bool status) async {

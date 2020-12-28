@@ -17,3 +17,5 @@ const dottedBorderColor = Colors.white;
 // ---- Game Over Result Screen Color ----
 const resultBackgroundColor = Color(0xffFFFAFA);
 const resultBackgroundBorderColor = Color(0xffeab443);
+const newHighestScoreTextColor = Colors.green;
+const yourScoreTextColor = Colors.red;

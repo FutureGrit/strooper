@@ -15,13 +15,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case routes.HomeRoute:
       return SharedAxisPageRoute(
           page: HomeView(),
-          transitionType: SharedAxisTransitionType.horizontal,
+          transitionType: SharedAxisTransitionType.scaled,
           settings: settings);
       break;
     case routes.InstructionRoute:
       return SharedAxisPageRoute(
           page: InstructionView(),
-          transitionType: SharedAxisTransitionType.horizontal,
+          transitionType: SharedAxisTransitionType.scaled,
           settings: settings);
       break;
     case routes.PlayRoute:

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/strings.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/helpers/bounce_animation.dart';
@@ -18,11 +19,9 @@ import 'widgets/cloud_widget.dart';
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('[HO1]-------- HomeView Rebuilding --------');
     return ChangeNotifierProvider<HomeViewModel>(
       create: (context) => HomeViewModel(),
       builder: (context, child) {
-        print('[HO*]-------- HomeView Rebuilding --------');
         return WillPopScope(
           onWillPop: () async => _onBackPressed(buildContext: context),
           child: Scaffold(
@@ -71,7 +70,7 @@ class HomeView extends StatelessWidget {
                           SafeArea(
                             child: Padding(
                               padding: EdgeInsets.only(bottom: paddingSmall),
-                              child: Text('@FutureGrit', style: watermarkStyle),
+                              child: Text(watermark, style: watermarkStyle),
                             ),
                           )
                         ],
@@ -92,15 +91,15 @@ class HomeView extends StatelessWidget {
     return showDialog(
       context: buildContext,
       builder: (context) => AlertDialog(
-        title: Text('Warning'),
-        content: Text('Do you really want to exit from STROOPER Game?'),
+        title: Text(titleText),
+        content: Text(message),
         actions: [
           FlatButton(
-            child: Text('YES'),
+            child: Text(yes),
             onPressed: () => Navigator.pop(context, true),
           ),
           FlatButton(
-            child: Text('NO'),
+            child: Text(no),
             onPressed: () => Navigator.pop(context, false),
           )
         ],

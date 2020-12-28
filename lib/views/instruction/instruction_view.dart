@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:strooper/constants/app_colors.dart';
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/strings.dart';
 import 'package:strooper/constants/values.dart';
 import 'package:strooper/enums/game_images.dart';
 import 'package:strooper/enums/strooper_actions.dart';
@@ -32,7 +33,7 @@ class InstructionView extends StatelessWidget {
                       height: Methods.getHeight(context, divideBy: 11),
                       alignment: AlignmentDirectional.center,
                       decoration: howToPlayDecoration,
-                      child: Text("How to play?", style: howToPlayTextStyle),
+                      child: Text(instructionTitle, style: howToPlayTextStyle),
                     ),
                   ),
                   horizontalSpacingMedium,
@@ -65,45 +66,41 @@ class InstructionView extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "You will be presented with a word (name of a color) "
-                          "and this word will be displayed using a color.",
+                          instructionPart1,
                           style: detailTextStyle,
                           textAlign: TextAlign.justify,
                         ),
                         verticalSpacingExtraLarge,
                         exampleWidget(
                           context,
-                          word: "RED",
+                          word: exampleWord,
                           color: Colors.green,
-                          description: "- Word: Red\n- Color: Green",
+                          description: wrongDescription,
                           iconPath: "images/wrong_icon.svg",
                         ),
                         verticalSpacingNormal,
                         Text(
-                          "As the word (red) and its color (green) do not match "
-                          "then tap on the [wrong] button.",
+                          instructionPart2,
                           style: detailTextStyle,
                           textAlign: TextAlign.justify,
                         ),
                         verticalSpacingExtraLarge,
                         exampleWidget(
                           context,
-                          word: "RED",
+                          word: exampleWord,
                           color: Colors.red,
-                          description: "- Word: Red\n- Color: Red",
+                          description: correctDescription,
                           iconPath: "images/right_icon.svg",
                         ),
                         verticalSpacingNormal,
                         Text(
-                          "As the word (red) and its color (red) does match then "
-                          "tap on the [correct] button.",
+                          instructionPart3,
                           style: detailTextStyle,
                           textAlign: TextAlign.justify,
                         ),
                         verticalSpacingMedium,
                         Text(
-                          "Please make sure to answer the question before the "
-                          "countdown timer is over.",
+                          instructionPart4,
                           style: detailTextStyle,
                           textAlign: TextAlign.justify,
                         ),

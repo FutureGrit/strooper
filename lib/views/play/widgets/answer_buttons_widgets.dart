@@ -14,7 +14,6 @@ import '../question_view_model.dart';
 class AnswerButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint('[7]-------- AnswerButtonWidget Rebuilding -------');
     return OneTapRecognizerWidget(
       child: Container(
         margin: EdgeInsets.only(bottom: marginLarge),

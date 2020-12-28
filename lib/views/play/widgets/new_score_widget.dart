@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:strooper/constants/shared_style.dart';
+import 'package:strooper/constants/strings.dart';
 
 import '../question_view_model.dart';
 
@@ -10,15 +11,13 @@ class NewScoreWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<QuestionViewModel>(
       builder: (context, model, child) {
-        debugPrint("[2]-------- NewScoreWidget Rebuilding --------");
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Score', style: highScoreTextStyle),
+            Text(score, style: highScoreTextStyle),
             Text(
               model.score.toString(),
-              //TODO: set style const
-              style: highScoreTextStyle.copyWith(fontSize: 36),
+              style: newScoreTextStyle,
             )
           ],
         );

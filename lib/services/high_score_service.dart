@@ -15,7 +15,6 @@ class HighScoreService {
       await _gameDatabaseService.saveHighScore(score);
 
       updateHighScoreWidget();
-      print('[x]-------- Check Score: $highScore --------');
       return GameOver(highScore: score, isHighest: true);
     }
     return GameOver(newScore: score, highScore: highScore, isHighest: false);

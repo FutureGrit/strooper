@@ -48,7 +48,6 @@ class GameOverView extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: Methods.getHeight(context, divideBy: 2.1),
                           margin:
                               EdgeInsets.only(bottom: gameOverMenuButtonRadius),
                           child: CustomPaint(
@@ -56,7 +55,7 @@ class GameOverView extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.fromLTRB(
                                   paddingMedium,
-                                  paddingMedium,
+                                  paddingLarge,
                                   paddingMedium,
                                   gameOverMenuButtonRadius),
                               child: scoreDetails.isHighest

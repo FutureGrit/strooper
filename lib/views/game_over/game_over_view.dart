@@ -40,57 +40,64 @@ class GameOverView extends StatelessWidget {
                     SvgPicture.memory(
                       Methods.getImageData(imageType: GameImages.GAME_OVER),
                       width: Methods.getWidth(context) - paddingLarge * 2,
+                      semanticsLabel: "Game Over",
                     ),
                     verticalSpacingMedium,
                     Stack(
                       overflow: Overflow.visible,
                       alignment: AlignmentDirectional.bottomCenter,
                       children: [
-                        Container(
-                          width: double.infinity,
-                          margin:
-                              EdgeInsets.only(bottom: gameOverMenuButtonRadius),
-                          child: CustomPaint(
-                            painter: GameResultBackgroundPainter(),
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(
-                                  paddingMedium,
-                                  paddingLarge,
-                                  paddingMedium,
-                                  gameOverMenuButtonRadius),
-                              child: scoreDetails.isHighest
-                                  ? Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        ...getScoreWidget(
-                                          title: newHighestScore,
-                                          value: '${scoreDetails.highScore}',
-                                          color: newHighestScoreTextColor,
-                                        ),
-                                      ],
-                                    )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        ...getScoreWidget(
-                                          title: yourScore,
-                                          value: '${scoreDetails.newScore}',
-                                          color: yourScoreTextColor,
-                                        ),
-                                        verticalSpacingNormal,
-                                        ...getScoreWidget(
-                                          title: highest,
-                                          value: '${scoreDetails.highScore}',
-                                          color: newHighestScoreTextColor,
-                                        )
-                                      ],
-                                    ),
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight:
+                                Methods.getHeight(context, divideBy: 2.1),
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.only(
+                                bottom: gameOverMenuButtonRadius),
+                            child: CustomPaint(
+                              painter: GameResultBackgroundPainter(),
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    paddingMedium,
+                                    paddingMedium,
+                                    paddingMedium,
+                                    gameOverMenuButtonRadius),
+                                child: scoreDetails.isHighest
+                                    ? Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          ...getScoreWidget(
+                                            title: newHighestScore,
+                                            value: '${scoreDetails.highScore}',
+                                            color: newHighestScoreTextColor,
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          ...getScoreWidget(
+                                            title: yourScore,
+                                            value: '${scoreDetails.newScore}',
+                                            color: yourScoreTextColor,
+                                          ),
+                                          verticalSpacingNormal,
+                                          ...getScoreWidget(
+                                            title: highest,
+                                            value: '${scoreDetails.highScore}',
+                                            color: newHighestScoreTextColor,
+                                          )
+                                        ],
+                                      ),
+                              ),
                             ),
                           ),
                         ),
@@ -109,6 +116,7 @@ class GameOverView extends StatelessWidget {
                                 Methods.getImageData(
                                     imageType: GameImages.GOTO_HOME),
                                 height: gameOverMenuButtonRadius * 2,
+                                semanticsLabel: "Goto Home Screen",
                               ),
                             ),
 
@@ -124,6 +132,7 @@ class GameOverView extends StatelessWidget {
                                 Methods.getImageData(
                                     imageType: GameImages.RESTART_GAME),
                                 height: gameOverMenuButtonRadius * 2,
+                                semanticsLabel: "Restart Game",
                               ),
                             ),
                           ],

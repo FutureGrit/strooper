@@ -6,11 +6,7 @@ import 'package:strooper/enums/strooper_actions.dart';
 
 class SoundService {
   SoundService() {
-    _backgroundAudioController = AudioPlayer();
-    _backgroundAudioCache = AudioCache(fixedPlayer: _backgroundAudioController);
-
-    _buttonAudioController = AudioPlayer();
-    _buttonAudioCache = AudioCache(fixedPlayer: _buttonAudioController);
+    _backgroundAudioCache.fixedPlayer = _backgroundAudioController;
 
     // Pre-loading audio so that they will always play smoothly.
     _backgroundAudioCache.load(backgroundSound);
@@ -20,11 +16,10 @@ class SoundService {
     _buttonAudioCache.loadAll(audioList);
   }
 
-  AudioPlayer _backgroundAudioController;
-  AudioCache _backgroundAudioCache;
+  final AudioPlayer _backgroundAudioController = AudioPlayer();
+  final AudioCache _backgroundAudioCache = AudioCache();
 
-  AudioPlayer _buttonAudioController;
-  AudioCache _buttonAudioCache;
+  final AudioCache _buttonAudioCache = AudioCache();
 
   Map<StrooperActions, String> buttonActionMapping = {
     StrooperActions.START_GAME: startGameSound,
@@ -40,10 +35,6 @@ class SoundService {
     _backgroundAudioController
       ..stop()
       ..release();
-
-    // Button audio controller only need to release because it has shorter audio
-    // which will automatically stop.
-    _buttonAudioController?.release();
   }
 
   void pauseBackgroundMusic() async {
@@ -55,6 +46,6 @@ class SoundService {
   }
 
   void playButtonSound(StrooperActions action) async {
-    await _buttonAudioCache.play(buttonActionMapping[action], duckAudio: true);
+    await _buttonAudioCache.play(buttonActionMapping[action]);
   }
 }
